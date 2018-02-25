@@ -1,0 +1,44 @@
+Terrain Generation
+
+semi smooth terrain (triangular tiles) with adjustible resolution
+
+height function generated from seed
+takes as input x and y double
+
+
+rendering:
+
+TileHandler -> TerrainHandler
+when rendering calls render call in EntityHandler that renders entities in a certain area
+maybe some sort of optimization to speed up rendering (if drops bellow 150 frames per second)
+
+computations:
+
+//*************************************
+//REST IN NOTE BOOK
+//*************************************
+
+given height function f(X,Y) and spacing W
+
+calculate height at (x,y)
+
+
+//2 corners of square where (x,y) falls in W sized grid
+double x1 = (x - x%W);
+double x2 = x1 + W;
+
+double y1 = (y - y%W);
+double y2 = y1 + W;
+
+if(x > y) { // Then in top half
+
+//calculate plane slope along x and y and plug and chug
+
+
+
+
+} else {//then in bottom half
+//not equality case doesn't matter because both sides would have the same height
+
+
+}
