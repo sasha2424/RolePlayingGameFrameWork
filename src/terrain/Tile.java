@@ -2,6 +2,7 @@ package terrain;
 
 import java.awt.Color;
 
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.Serializable;
@@ -11,7 +12,6 @@ import entitiesHandling.Entity;
 import entitiesHandling.Player;
 import main.RPGFrame;
 import main.Variables;
-import processing.core.PApplet;
 import rendering.Renderable;
 
 public class Tile extends Renderable implements Serializable {
@@ -118,14 +118,6 @@ public class Tile extends Renderable implements Serializable {
 
 	private static double getY(double x, double y, double r, double Height) {
 		return (y) * Math.cos(r) + (x) * Math.sin(r) + Height;
-	}
-
-	private void line(PApplet p, double r, double x1, double y1, double x2, double y2) {
-		float X1 = (float) getX(x1, y1, r, p.width);
-		float Y1 = (float) getY(x1, y1, r, p.height);
-		float X2 = (float) getX(x2, y2, r, p.width);
-		float Y2 = (float) getY(x2, y2, r, p.height);
-		p.line(X1, Y1, X2, Y2);
 	}
 
 	private void rect(Graphics g, double X1, double Y1, double X2, double Y2, double X3, double Y3, double X4,

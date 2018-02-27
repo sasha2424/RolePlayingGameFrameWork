@@ -27,21 +27,28 @@ import terrain.*;
 
 public class RPGFrame extends JPanel implements Runnable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	// TODO make different for each class
+
 	private double WIDTH = 600;
 	private double HEIGHT = 600;
 	private long SEED;
 
-	private int SCROLL_SENSITIVITY = 100; // TODO move to input Handler
+	private int SCROLL_SENSITIVITY = 100;
+	// TODO move to input Handler
 
 	private String DEFAULT_SPRITE_SHEET = "./spritesheets/Entities.png";
+	// TODO make the file location set-able
 	private int DEFAULT_SPRITE_SHEET_SIZE = 10;
 
 	public int LOAD_SIZE = 2;// 2
 	public int BUFFER = 1;
 
 	public int RENDER_DISTANCE_TILE = 2;
-	public int RENDER_DISTANCE_ENTITY = 200;
-	// TODO make the file location set-able
+	public int RENDER_DISTANCE_ENTITY = 2000;
 
 	private TileHandler tileHandler;
 	private InputHandler inputHandler;

@@ -1,15 +1,13 @@
 package entitiesHandling;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-
-import main.RPGFrame;
-import processing.core.PApplet;
-import terrain.TerrainGenerator;
-import terrain.Tile;
-
 public abstract class MovingEntity extends Entity {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	
 	protected Boolean shouldMove = true;
 	protected double moveDistance = 50;
 
