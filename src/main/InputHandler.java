@@ -13,48 +13,51 @@ public class InputHandler implements KeyListener, MouseWheelListener {
 
 	private int scroll;
 
+	private int SCROLL_SENSITIVITY;
+
 	public InputHandler() {
 		super();
 		scroll = 0;
 		keys = new ArrayList<Key>();
-		keys.add(new Key("W",true));
-		keys.add(new Key("A",true));
-		keys.add(new Key("S",true));
-		keys.add(new Key("D",true));
-		keys.add(new Key("E",false));
-		keys.add(new Key("Space",true));
-		keys.add(new Key("Q",true));
-		keys.add(new Key("Escape",false));
+
+	}
+
+	public void trackNewKey(String c, String isToggle) {
+		keys.add(new Key(c, !isToggle.equals("toggle")));
+	}
+
+	public void setScrollSensitivity(int k) {
+		SCROLL_SENSITIVITY = k;
 	}
 
 	public boolean getKeyPressed(String s) {
-		for(Key k : keys){
-			if(k.getName().equals(s))
+		for (Key k : keys) {
+			if (k.getName().equals(s))
 				return k.isPressed();
 		}
 		return false;
 	}
-	
-	public String getAllKeyStatus(){
+
+	public String getAllKeyStatus() {
 		String r = "";
-		for(Key k:keys){
+		for (Key k : keys) {
 			r += k.getName() + "\t" + k.isPressed() + "\n";
 		}
-		return r.substring(0,r.length()-1);
+		return r.substring(0, r.length() - 1);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		for(Key k : keys){
-			if(k.getName().equals(KeyEvent.getKeyText(e.getKeyCode())))
+		for (Key k : keys) {
+			if (k.getName().equals(KeyEvent.getKeyText(e.getKeyCode())))
 				k.toggle();
 		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		for(Key k : keys){
-			if(k.isResetValueOnRelease() && k.getName().equals(KeyEvent.getKeyText(e.getKeyCode())))
+		for (Key k : keys) {
+			if (k.isResetValueOnRelease() && k.getName().equals(KeyEvent.getKeyText(e.getKeyCode())))
 				k.setNotPressed();
 		}
 	}
@@ -88,7 +91,7 @@ public class InputHandler implements KeyListener, MouseWheelListener {
 		public boolean isPressed() {
 			return pressed;
 		}
-		
+
 		public boolean isResetValueOnRelease() {
 			return resetValueOnRelease;
 		}

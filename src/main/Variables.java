@@ -10,11 +10,7 @@ public class Variables {
 
 	public static double rotation;
 
-	// Constants
-	
-	
-	//public static final int RENDER_DISTANCE = 2;
-	public static final double TILE_SIZE = 1600; // 1600
+	public static double TILE_SIZE = 1600; // 1600
 
 	public static void addVar(String s, Double d) {
 		vars.put(s, d);

@@ -2,6 +2,7 @@ package main;
 
 import java.awt.BorderLayout;
 
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
@@ -21,7 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entitiesHandling.*;
-import rendering.*;
+		import rendering.*;
 import saving.SaveHandler;
 import terrain.*;
 
@@ -73,24 +74,61 @@ public class RPGFrame extends JPanel implements Runnable {
 		// System.out.println("Seed: " + SEED);
 
 		player = loadPlayer();
+		
 		System.out.println(player);
+		
 		entityHandler = new EntityHandler();
+		
 		entityHandler.addEntity(player);
+		
 		terrainGenerator = new BasicTerrainGenerator(SEED);
+		
 		tileHandler = new TileHandler(entityHandler);
+		
 		inputHandler = new InputHandler();
+		inputHandler.trackNewKey("W", "noToggle");
+		inputHandler.trackNewKey("A", "noToggle");
+		inputHandler.trackNewKey("S", "noToggle");
+		inputHandler.trackNewKey("D", "noToggle");
+		inputHandler.trackNewKey("E", "toggle");
+		inputHandler.trackNewKey("Space", "noToggle");
+		inputHandler.trackNewKey("Q", "noToggle");
+		inputHandler.trackNewKey("Escape", "toggle");
+		
+		
 		spawnHandler = new BasicSpawner();
+		
 		saveHandler = new SaveHandler();
+		
 		eventHandler = new EventHandler();
+		
 		renderQueue = new RenderQueue();
+		
+	}
+
+	public void setWindowSize(double WindowSizeX, double WindowSizeY) {
+		WIDTH = WindowSizeX;
+		HEIGHT = WindowSizeY;
+	}
+	
+	public void setSeed(long seed){
+		SEED = seed;
+	}
+
+	public void addTileHandler(TileHandler e) {
+		tileHandler = e;
+	}
+
+	public void addInputHandler(InputHandler e) {
+		inputHandler = e;
 	}
 
 	public void addEntityHandler(EntityHandler e) {
 		entityHandler = e;
 	}
 
-	public void addTileHandler(TileHandler e) {
-		tileHandler = e;
+	public void addSpawner(Spawner e) {
+		spawnHandler = e;
 	}
 
 	public void addSaveHandler(SaveHandler e) {
@@ -99,6 +137,10 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	public void addeventHandler(EventHandler e) {
 		eventHandler = e;
+	}
+
+	public void addTerrainGenerator(TerrainGenerator e) {
+		terrainGenerator = e;
 	}
 
 	public void addRenderQueue(RenderQueue e) {
