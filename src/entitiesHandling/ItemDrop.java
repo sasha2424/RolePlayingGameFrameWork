@@ -60,7 +60,6 @@ public class ItemDrop extends Entity {
 			if(p.inventory.addItem(item));
 				this.hasDied = true;
 		}
-
 	}
 
 }

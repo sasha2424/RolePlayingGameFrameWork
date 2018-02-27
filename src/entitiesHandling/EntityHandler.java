@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import main.RPGFrame;
 import rendering.RenderQueue;
 import terrain.Tile;
 import terrain.TileHandler;
@@ -18,21 +19,19 @@ import terrain.TileHandler;
 public class EntityHandler {
 
 	private ArrayList<Entity> entities;
-	
-	public static final double RENDER_DISTANCE = 2000;
 
 	public EntityHandler() {
 		entities = new ArrayList<Entity>();
 	}
 
-	public void tick(TileHandler t, Player p) {
+	public void tick(Player p) {
 		if (entities != null) {
 			for (int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
 				if (!e.isDead()) {
 					e.tick(this);
 
-					if (!(e instanceof Player) && dist(e, p) < Player.interactDistance*3) {
+					if (!(e instanceof Player) && dist(e, p) < Player.interactDistance * 3) {
 						e.nearPlayer(this, p);
 					}
 
@@ -93,11 +92,11 @@ public class EntityHandler {
 			}
 		}
 	}
-	
-	public void renderAll(RenderQueue renderQueue,Player p){
+
+	public void renderAll(RPGFrame frame, RenderQueue renderQueue, Player p) {
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
-			if (dist(p,e) < RENDER_DISTANCE) {
+			if (dist(p, e) < frame.RENDER_DISTANCE_ENTITY) {
 				renderQueue.addRenderable(e);
 			}
 		}

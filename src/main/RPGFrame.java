@@ -35,6 +35,12 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	private String DEFAULT_SPRITE_SHEET = "./spritesheets/Entities.png";
 	private int DEFAULT_SPRITE_SHEET_SIZE = 10;
+
+	public int LOAD_SIZE = 2;// 2
+	public int BUFFER = 1;
+
+	public int RENDER_DISTANCE_TILE = 2;
+	public int RENDER_DISTANCE_ENTITY = 200;
 	// TODO make the file location set-able
 
 	private TileHandler tileHandler;
@@ -116,7 +122,7 @@ public class RPGFrame extends JPanel implements Runnable {
 			if (dt > 20) {
 				t = System.currentTimeMillis();
 
-				entityHandler.tick(tileHandler, player);
+				entityHandler.tick(player);
 				spawnHandler.spawnEntities(this, player);
 
 				// do all player key actions
@@ -154,8 +160,8 @@ public class RPGFrame extends JPanel implements Runnable {
 
 				saveHandler.updateLoadedTiles(this, player);
 
-				tileHandler.renderAll(renderQueue, player);
-				entityHandler.renderAll(renderQueue, player);
+				tileHandler.renderAll(this, renderQueue, player);
+				entityHandler.renderAll(this, renderQueue, player);
 				renderQueue.renderAll(this, g2d, player, rotation, terrainGenerator.getEntityHeight(player));
 				renderQueue.clear();
 
@@ -182,11 +188,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	private void setPlayerRotation() {
 		Point mouse = getMouse();
-		double dx = -mouse.getX() + getCurrentWidth() / 2 + player.getSize() / 2;
-		double dy = -mouse.getY() + getCurrentHeight() / 2 + 3 * player.getSize() / 2; // TODO
-																						// figure
-																						// out
-																						// why?
+		double dx = -mouse.getX() + getCurrentWidth() / 2 + this.getLocationOnScreen().getX();
+		double dy = -mouse.getY() + getCurrentHeight() / 2 + this.getLocationOnScreen().getY();
+		// TODO figure out why?
 		double angle = Math.atan2(dy, dx) + Math.PI;
 		player.setRotation(angle);
 		playerRotation = angle;

@@ -25,7 +25,7 @@ public class SaveHandler {
 
 	// will be referred to as action border
 	// area where all tiles are loaded
-	
+
 	// If player moves out of this range
 
 	public SaveHandler() {
@@ -37,14 +37,14 @@ public class SaveHandler {
 		int X = player.getBoardX();
 		int Y = player.getBoardY();
 
-		if (Math.abs(X - oldX) > Variables.BUFFER || Math.abs(Y - oldY) > Variables.BUFFER) {
-			for (Tile t : frame.getTileHandler().getTilesToSave(Variables.LOAD_SIZE, X, Y)) {
+		if (Math.abs(X - oldX) > frame.BUFFER || Math.abs(Y - oldY) > frame.BUFFER) {
+			for (Tile t : frame.getTileHandler().getTilesToSave(frame.LOAD_SIZE, X, Y)) {
 				SavePacket p = new SavePacket(t, frame.getEntityHandler().getEntitiesInTile(t));
 				save(p);
 			}
 
-			for (int i = X - Variables.LOAD_SIZE; i < X + Variables.LOAD_SIZE; i++) {
-				for (int j = Y - Variables.LOAD_SIZE; j < Y + Variables.LOAD_SIZE; j++) {
+			for (int i = X - frame.LOAD_SIZE; i < X + frame.LOAD_SIZE; i++) {
+				for (int j = Y - frame.LOAD_SIZE; j < Y + frame.LOAD_SIZE; j++) {
 					if (frame.getTileHandler().missingTile(i, j)) {
 						SavePacket p = load(frame, i, j);
 						frame.getTileHandler().addTilefromSave(p.getTile());

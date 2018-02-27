@@ -11,6 +11,8 @@ public class Game {
 	
 	public static void main(String[] args){
 		RPGFrame frame = new RPGFrame();
+		
+		
 		frame.start();
 	}
 

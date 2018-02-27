@@ -11,9 +11,9 @@ public class Variables {
 	public static double rotation;
 
 	// Constants
-	public static final int LOAD_SIZE = 2;// 2
-	public static final int BUFFER = 1;
-	public static final int RENDER_DISTANCE = 2;
+	
+	
+	//public static final int RENDER_DISTANCE = 2;
 	public static final double TILE_SIZE = 1600; // 1600
 
 	public static void addVar(String s, Double d) {

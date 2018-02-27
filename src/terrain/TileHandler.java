@@ -3,6 +3,7 @@ package terrain;
 import java.util.ArrayList;
 import entitiesHandling.EntityHandler;
 import entitiesHandling.Player;
+import main.RPGFrame;
 import main.Variables;
 import rendering.RenderQueue;
 
@@ -14,12 +15,12 @@ public class TileHandler {
 		tiles = new ArrayList<Tile>();
 	}
 
-	public void renderAll(RenderQueue renderQueue, Player p) {
+	public void renderAll(RPGFrame frame, RenderQueue renderQueue, Player p) {
 		for (int i = 0; i < tiles.size(); i++) {
 			Tile t = tiles.get(i);
 
-			if (Math.abs(t.getBoardX() - p.getBoardX()) < Variables.RENDER_DISTANCE
-					&& Math.abs(t.getBoardY() - p.getBoardY()) < Variables.RENDER_DISTANCE) {
+			if (Math.abs(t.getBoardX() - p.getBoardX()) < frame.RENDER_DISTANCE_TILE
+					&& Math.abs(t.getBoardY() - p.getBoardY()) < frame.RENDER_DISTANCE_TILE) {
 				renderQueue.addRenderable(t);
 			}
 		}
