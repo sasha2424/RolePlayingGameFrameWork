@@ -74,7 +74,7 @@ public class InputHandler implements KeyListener, MouseWheelListener {
 
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
-		scroll += e.getWheelRotation();
+		scroll += e.getWheelRotation() * SCROLL_SENSITIVITY;
 	}
 
 	private class Key { // TODO give key codes and make streamlined

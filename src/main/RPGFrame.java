@@ -2,7 +2,6 @@ package main;
 
 import java.awt.BorderLayout;
 
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.MouseInfo;
@@ -22,7 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entitiesHandling.*;
-		import rendering.*;
+import rendering.*;
 import saving.SaveHandler;
 import terrain.*;
 
@@ -38,7 +37,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	private double HEIGHT = 600;
 	private long SEED;
 
-	private int SCROLL_SENSITIVITY = 100;
+	private int SCROLL_SENSITIVITY = 4;
 	// TODO move to input Handler
 
 	private String DEFAULT_SPRITE_SHEET = "./spritesheets/Entities.png";
@@ -74,18 +73,19 @@ public class RPGFrame extends JPanel implements Runnable {
 		// System.out.println("Seed: " + SEED);
 
 		player = loadPlayer();
-		
+
 		System.out.println(player);
-		
+
 		entityHandler = new EntityHandler();
-		
+
 		entityHandler.addEntity(player);
-		
+
 		terrainGenerator = new BasicTerrainGenerator(SEED);
-		
+
 		tileHandler = new TileHandler(entityHandler);
-		
+
 		inputHandler = new InputHandler();
+		inputHandler.setScrollSensitivity(SCROLL_SENSITIVITY);
 		inputHandler.trackNewKey("W", "noToggle");
 		inputHandler.trackNewKey("A", "noToggle");
 		inputHandler.trackNewKey("S", "noToggle");
@@ -94,27 +94,49 @@ public class RPGFrame extends JPanel implements Runnable {
 		inputHandler.trackNewKey("Space", "noToggle");
 		inputHandler.trackNewKey("Q", "noToggle");
 		inputHandler.trackNewKey("Escape", "toggle");
-		
-		
+
 		spawnHandler = new BasicSpawner();
-		
+
 		saveHandler = new SaveHandler();
-		
+
 		eventHandler = new EventHandler();
-		
+
 		renderQueue = new RenderQueue();
-		
+
 	}
 
 	public void setWindowSize(double WindowSizeX, double WindowSizeY) {
 		WIDTH = WindowSizeX;
 		HEIGHT = WindowSizeY;
 	}
-	
-	public void setSeed(long seed){
+
+	public void setSeed(long seed) {
 		SEED = seed;
 	}
+	
+	public void setScrollSensitivity(int scrollSensitivity){
+		SCROLL_SENSITIVITY = scrollSensitivity;
+	}
+	
+	public void setSpriteSheet(String fileName){
+		DEFAULT_SPRITE_SHEET = "./spritesheets/" + fileName;
+	}
+	
+	public void setLoadSize(int loadSize){
+		LOAD_SIZE = loadSize;
+	}
+	
+	public void setloadBuffer(int buffer){
+		BUFFER = buffer;
+	}
 
+	public void setTileRenderDistance(int r){
+		RENDER_DISTANCE_TILE = r;
+	}
+	
+	public void setEntityRenderDistance(int r){
+		RENDER_DISTANCE_ENTITY = r;
+	}
 	public void addTileHandler(TileHandler e) {
 		tileHandler = e;
 	}
@@ -146,6 +168,10 @@ public class RPGFrame extends JPanel implements Runnable {
 	public void addRenderQueue(RenderQueue e) {
 		renderQueue = e;
 	}
+	
+	public void setPlayer(Player p){
+		player = p;
+	}
 
 	public void start() {
 		this.run();
@@ -159,7 +185,6 @@ public class RPGFrame extends JPanel implements Runnable {
 		frame.setSize((int) WIDTH, (int) HEIGHT);
 		frame.setVisible(true);
 
-		inputHandler = new InputHandler();
 		frame.addKeyListener(inputHandler);
 		frame.addMouseWheelListener(inputHandler);
 
