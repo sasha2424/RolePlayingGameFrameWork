@@ -48,7 +48,7 @@ public class SaveHandler {
 					if (frame.getTileHandler().missingTile(i, j)) {
 						SavePacket p = load(frame, i, j);
 						frame.getTileHandler().addTilefromSave(p.getTile());
-						frame.getEntityHandler().addEntitiesFromSave(p.getEntities());
+						frame.getEntityHandler().addEntitiesFromSave(frame, p.getEntities());
 					}
 				}
 			}
@@ -85,7 +85,7 @@ public class SaveHandler {
 
 		Biome b = frame.getTerrainGenerator().getBiome(x, y);
 		Tile t = new Tile(x, y, frame.getTerrainGenerator().getTileHeight(x, y));
-		ArrayList<Entity> e = b.generateEntitiesForTile(t);
+		ArrayList<Entity> e = b.generateEntitiesForTile(frame, t);
 		return new SavePacket(t, e);
 	}
 

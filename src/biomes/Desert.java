@@ -9,6 +9,7 @@ import entities.Rat;
 import entities.Rock;
 import entitiesHandling.Entity;
 import entitiesHandling.Player;
+import main.RPGFrame;
 import terrain.Biome;
 import terrain.Tile;
 
@@ -33,20 +34,20 @@ public class Desert extends Biome {
 	}
 
 	@Override
-	public ArrayList<Entity> generateEntitiesForTile(Tile t) {
+	public ArrayList<Entity> generateEntitiesForTile(RPGFrame frame, Tile t) {
 		ArrayList<Entity> e = new ArrayList<Entity>();
 		for (int i = 0; i < 1; i++) {
-			e.add(new Grass(this.random(t.getBoardX()), this.random(t.getBoardY())));
+			e.add(new Grass(frame, this.random(t.getBoardX()), this.random(t.getBoardY())));
 		}
 		for (int i = 0; i < 1; i++) {
-			e.add(new Grass(this.random(t.getBoardX()), this.random(t.getBoardY())));
+			e.add(new Grass(frame, this.random(t.getBoardX()), this.random(t.getBoardY())));
 		}
 		return e;
 	}
 
-	protected ArrayList<Entity> getSpawnSet(Player p, Tile t) {
+	protected ArrayList<Entity> getSpawnSet(RPGFrame frame, Player p, Tile t) {
 		ArrayList<Entity> e = new ArrayList<Entity>();
-		e.add(new Rat(this.random(t.getBoardX()), this.random(t.getBoardY())));
+		e.add(new Rat(frame, this.random(t.getBoardX()), this.random(t.getBoardY())));
 		return e;
 	}
 

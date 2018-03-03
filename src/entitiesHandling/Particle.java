@@ -12,23 +12,25 @@ public class Particle extends StationaryEntity {
 	private static final int TICKS_PER_TEXTURE = 5;
 	private int duration;
 
-	public Particle(double X, double Y, int type, int duration) {
+	public Particle(RPGFrame frame, double X, double Y, int type, int duration) {
 		super(X, Y);
 		if (type == 0) {
 			this.textureX = new int[] { 0, 1, 2 };
 			this.textureY = new int[] { 2, 2, 2 };
 		}
-		this.updateTexture();
+		this.updateTexture(frame);
 		name = "tree";
 		this.duration = duration;
 	}
 
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
 
-		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
-		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
+		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation,
+				w.getCurrentWidth() / 2));
+		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation,
+				w.getCurrentHeight() / 2));
 
-		double deltaH = getHeightDifference(w,height);
+		double deltaH = getHeightDifference(w, height);
 		int k = 40;
 		g.drawImage(texture[(int) (animation / TICKS_PER_TEXTURE)], (int) (x - k / 2), (int) (y + deltaH - k), k, k,
 				null);
@@ -40,11 +42,23 @@ public class Particle extends StationaryEntity {
 	}
 
 	@Override
-	public void tick(EntityHandler e) {
+	public void tick(RPGFrame frame) {
 		t++;
 		if (t > duration) {
 			this.hasDied = true;
 		}
+	}
+
+	@Override
+	public void nearPlayer(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deathEvent(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

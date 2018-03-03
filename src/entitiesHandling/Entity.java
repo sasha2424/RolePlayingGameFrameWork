@@ -6,9 +6,9 @@ import java.io.Serializable;
 
 import main.DoubleStat;
 import main.RPGFrame;
-import main.SpriteSheetLoader;
 import main.Variables;
 import rendering.Renderable;
+import spriteSheets.SpriteSheetLoader;
 import terrain.Tile;
 
 public abstract class Entity extends Renderable implements Serializable {
@@ -43,13 +43,13 @@ public abstract class Entity extends Renderable implements Serializable {
 	protected boolean visible;
 	protected boolean collides;
 
-	public Entity(double X, double Y, int[] x, int[] y) {
+	public Entity(RPGFrame frame, double X, double Y, int[] x, int[] y) {
 		this.absX = X;
 		this.absY = Y;
 		textureX = x;
 		textureY = y;
 		texture = new Image[x.length];
-		updateTexture();
+		updateTexture(frame);
 
 		// TODO put these in each entity as a required setup method
 		HP = new DoubleStat(10, 10);
@@ -61,10 +61,10 @@ public abstract class Entity extends Renderable implements Serializable {
 		this.setRP(1);
 	}
 
-	public void updateTexture() {
+	public void updateTexture(RPGFrame frame) {
 		texture = new Image[textureX.length];
 		for (int i = 0; i < textureX.length; i++) {
-			texture[i] = SpriteSheetLoader.getTexture(textureX[i], textureY[i]);
+			texture[i] = frame.getSpriteSheetLoader().getTexture(textureX[i], textureY[i]);
 		}
 	}
 
@@ -88,16 +88,16 @@ public abstract class Entity extends Renderable implements Serializable {
 	}
 
 	@Override
-	public abstract void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height);
+	public abstract void draw(RPGFrame frame, Graphics2D g, Player player, double rotation, double height);
 
-	public abstract void tick(EntityHandler e);
+	public abstract void tick(RPGFrame frame);
 
-	public abstract void interactPlayer(EntityHandler e, Player p);
+	public abstract void interactPlayer(RPGFrame frame, Player p);
 	// perform action with player/to self
 
-	public abstract void nearPlayer(EntityHandler e, Player p);
+	public abstract void nearPlayer(RPGFrame frame, Player p);
 
-	public abstract void deathEvent(EntityHandler e, Player p);
+	public abstract void deathEvent(RPGFrame frame, Player p);
 
 	public double getAbsX() {
 		return absX;
@@ -138,17 +138,20 @@ public abstract class Entity extends Renderable implements Serializable {
 	protected static double getStandardRenderY(double x, double y, double r, double ScreanHeight) {
 		return (y) * Math.cos(r) + (x) * Math.sin(r) + ScreanHeight;
 	}
-	
-	protected void standardDraw(RPGFrame w, Graphics2D g, Player player, double rotation, double height,int textureNum){
-		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
-		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
+
+	protected void standardDraw(RPGFrame w, Graphics2D g, Player player, double rotation, double height,
+			int textureNum) {
+		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation,
+				w.getCurrentWidth() / 2));
+		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation,
+				w.getCurrentHeight() / 2));
 
 		double ownHeight = w.getTerrainGenerator().getEntityHeight(this);
 		double deltaH = height - ownHeight;
-		g.drawImage(texture[textureNum], (int) (x - size / 2), (int) (y  + deltaH- size), size, size, null);
+		g.drawImage(texture[textureNum], (int) (x - size / 2), (int) (y + deltaH - size), size, size, null);
 	}
-	
-	public double getHeightDifference(RPGFrame w, double playerHeight){
+
+	public double getHeightDifference(RPGFrame w, double playerHeight) {
 		double ownHeight = w.getTerrainGenerator().getEntityHeight(this);
 		return playerHeight - ownHeight;
 	}
@@ -160,7 +163,5 @@ public abstract class Entity extends Renderable implements Serializable {
 	public boolean isDead() {
 		return hasDied;
 	}
-
-	
 
 }

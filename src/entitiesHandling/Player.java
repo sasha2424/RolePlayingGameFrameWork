@@ -16,7 +16,7 @@ public class Player extends MovingEntity implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	public static final double speed = 10;
 	public static final double interactDistance = 80;
 	public static final double interectAngle = Math.PI / 8;
@@ -26,8 +26,8 @@ public class Player extends MovingEntity implements Serializable {
 
 	private double rotation;
 
-	public Player(int X, int Y, int[] x, int[] y) {
-		super(X, Y, x, y);
+	public Player(RPGFrame frame, int X, int Y, int[] x, int[] y) {
+		super(frame, X, Y, x, y);
 		this.name = "player";
 		inventory = new Inventory();
 		size = 30;
@@ -70,7 +70,7 @@ public class Player extends MovingEntity implements Serializable {
 		g.drawLine(cx, cy, cx + (int) (interactDistance * Math.cos(this.rotation)),
 				cy + (int) (interactDistance * Math.sin(this.rotation)));
 
-		if (true) { //TODO DEBUG needs to be setup
+		if (true) { // TODO DEBUG needs to be setup
 			double r = interectAngle;
 			g.drawLine(cx, cy, cx + (int) (interactDistance * Math.cos(this.rotation + r)),
 					cy + (int) (interactDistance * Math.sin(this.rotation + r)));
@@ -94,7 +94,7 @@ public class Player extends MovingEntity implements Serializable {
 	}
 
 	@Override
-	public void tick(EntityHandler e) {
+	public void tick(RPGFrame frame) {
 		attackTickCount++;
 		// TODO stuff like burns and poison and effects
 
@@ -110,5 +110,15 @@ public class Player extends MovingEntity implements Serializable {
 
 	public void setRotation(double r) {
 		rotation = r;
+	}
+
+	@Override
+	public void nearPlayer(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void deathEvent(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
 	}
 }

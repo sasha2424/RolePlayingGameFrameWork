@@ -1,22 +1,22 @@
 package entitiesHandling;
 
+import main.RPGFrame;
+
 public abstract class MovingEntity extends Entity {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	protected Boolean shouldMove = true;
 	protected double moveDistance = 50;
 
 	private int timer = 0; // for deathAnimation()
 
-	public MovingEntity(double X, double Y, int[] x, int[] y) {
-		super(X, Y, x, y);
+	public MovingEntity(RPGFrame frame, double X, double Y, int[] x, int[] y) {
+		super(frame, X, Y, x, y);
 		canMove = true;
-
 	}
 
 	protected void move(double distance) {
@@ -32,25 +32,22 @@ public abstract class MovingEntity extends Entity {
 		absY += velY;
 	}
 
-	public void interactPlayer(EntityHandler e, Player player) {
+	public void interactPlayer(RPGFrame frame, Player player) {
 		this.HP.increment(-1 * player.A.getVal());
-		this.summonParticle(e, 0, 10, 30);
+		this.summonParticle(frame, 0, 10, 30);
 	}
 
-	public void nearPlayer(EntityHandler e, Player p) {
-		// TODO maybe have some sort of particles for some things
-	}
-
-	protected void summonParticle(EntityHandler e, int type, double range, int duration) {
+	protected void summonParticle(RPGFrame frame, int type, double range, int duration) {
 		double randX = Math.random() * range * 2 - range;
 		double randY = Math.random() * range * 2 - range;
-		e.addEntity(new Particle(this.getAbsX() + randX, this.getAbsY() + randY, type, duration));
+		frame.getEntityHandler()
+				.addEntity(new Particle(frame, this.getAbsX() + randX, this.getAbsY() + randY, type, duration));
 	}
 
-	protected void deathAnimation(EntityHandler e, int type, int length, int parts) {
+	protected void deathAnimation(RPGFrame frame, int type, int length, int parts) {
 		int d = (int) (length / parts);
 		if (timer % d == 0) {
-			e.addEntity(new Particle(this.getAbsX(), this.getAbsY(), type, d));
+			frame.getEntityHandler().addEntity(new Particle(frame, this.getAbsX(), this.getAbsY(), type, d));
 		}
 		timer++;
 		if (timer > length) {

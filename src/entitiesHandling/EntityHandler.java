@@ -14,19 +14,19 @@ public class EntityHandler {
 		entities = new ArrayList<Entity>();
 	}
 
-	public void tick(Player p) {
+	public void tick(RPGFrame frame, Player p) {
 		if (entities != null) {
 			for (int i = 0; i < entities.size(); i++) {
 				Entity e = entities.get(i);
 				if (!e.isDead()) {
-					e.tick(this);
+					e.tick(frame);
 
 					if (!(e instanceof Player) && dist(e, p) < Player.interactDistance * 3) {
-						e.nearPlayer(this, p);
+						e.nearPlayer(frame, p);
 					}
 
 				} else {
-					e.deathEvent(this, p);
+					e.deathEvent(frame, p);
 					entities.remove(e);
 				}
 			}
@@ -60,13 +60,13 @@ public class EntityHandler {
 		}
 	}
 
-	public void playerInteract(Player player, double r) {
+	public void playerInteract(RPGFrame frame, Player player, double r) {
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
 			if (e != player && dist(e, player) <= Player.interactDistance) {
 				double a = angle(player, e);
 				if (angleDist(a, r) < player.interectAngle) {
-					e.interactPlayer(this, player);
+					e.interactPlayer(frame, player);
 				}
 			}
 		}
@@ -74,10 +74,10 @@ public class EntityHandler {
 
 	// same as addEntities() but also updates the texture of each one
 	// only for when tiles are being reloaded
-	public void addEntitiesFromSave(ArrayList<Entity> e) {
+	public void addEntitiesFromSave(RPGFrame frame, ArrayList<Entity> e) {
 		if (e != null) {
 			for (Entity a : e) {
-				a.updateTexture();
+				a.updateTexture(frame);
 				entities.add(a);
 			}
 		}

@@ -6,18 +6,17 @@ import entitiesHandling.EntityHandler;
 import entitiesHandling.ItemDrop;
 import entitiesHandling.MovingEntity;
 import entitiesHandling.Player;
+import items.Bread;
 import items.Fur;
 import main.DoubleStat;
 import main.RPGFrame;
 
 public class Walker extends MovingEntity {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
-	public Walker(double X, double Y) {
-		super(X, Y, new int[] { 1 }, new int[] { 0 });
+	public Walker(RPGFrame frame, double X, double Y) {
+		super(frame, X, Y, new int[] { 1 }, new int[] { 0 });
 		speed = new DoubleStat(1, 1);
 		name = "walker";
 		HP = new DoubleStat(20, 20);
@@ -28,14 +27,14 @@ public class Walker extends MovingEntity {
 
 	@Override
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
-		super.standardDraw(w, g, player, rotation, height,0);
+		super.standardDraw(w, g, player, rotation, height, 0);
 	}
 
 	@Override
-	public void tick(EntityHandler e) {
+	public void tick(RPGFrame frame) {
 
 		if (HP.getVal() > 0) {
-			Entity nearest = e.getNearestEntity(this, "player");
+			Entity nearest = frame.getEntityHandler().getNearestEntity(this, "player");
 			if (nearest != null) {
 				double dx = nearest.getAbsX() - this.getAbsX();
 				double dy = nearest.getAbsY() - this.getAbsY();
@@ -46,7 +45,7 @@ public class Walker extends MovingEntity {
 			}
 
 		} else if (HP.getVal() <= 0) {
-			super.deathAnimation(e, 0, 30, 3);
+			super.deathAnimation(frame, 0, 30, 3);
 		}
 	}
 
@@ -55,9 +54,15 @@ public class Walker extends MovingEntity {
 	}
 
 	@Override
-	public void deathEvent(EntityHandler e, Player p) {
+	public void deathEvent(RPGFrame frame, Player p) {
 		if (Math.random() < .5)
-			e.addEntity(new ItemDrop(absX, absY, new Fur()));
+			frame.getEntityHandler().addEntity(new ItemDrop(absX, absY, new Bread(frame)));
+
+	}
+
+	@Override
+	public void nearPlayer(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
 
 	}
 

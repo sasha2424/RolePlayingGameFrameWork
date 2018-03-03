@@ -9,8 +9,9 @@ import java.util.Random;
 import entities.Walker;
 import entitiesHandling.Entity;
 import entitiesHandling.Player;
-import main.SpriteSheetLoader;
+import main.RPGFrame;
 import main.Variables;
+import spriteSheets.SpriteSheetLoader;
 
 public abstract class Biome implements Serializable {
 
@@ -32,11 +33,12 @@ public abstract class Biome implements Serializable {
 	// return a texture for the surface
 	public abstract Image getSurfaceTexture();
 
-	public abstract ArrayList<Entity> generateEntitiesForTile(Tile t);
+	public abstract ArrayList<Entity> generateEntitiesForTile(RPGFrame frame, Tile t);
 
-	protected abstract ArrayList<Entity> getSpawnSet(Player p, Tile t);
+	protected abstract ArrayList<Entity> getSpawnSet(RPGFrame frame, Player p, Tile t);
 
 	protected double random(int x) {
 		return (x + Math.random()) * Variables.TILE_SIZE;
 	}
+
 }

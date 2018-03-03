@@ -20,9 +20,9 @@ public class BasicSpawner extends Spawner {
 			timerLimit = (int) (Math.random() * timerLimitMax);
 			timer = 0;
 
-			// get spawn for biome at the player tile
-			frame.getEntityHandler().addEntities(frame.getTerrainGenerator().getBiome(p.getBoardX(), p.getBoardY()).getSpawnSet(p,
-					frame.getTileHandler().getPlayerTile(p)));
+			// add spawn from the players tile to the entityHandler
+			frame.getEntityHandler().addEntities(frame.getTerrainGenerator().getBiome(p.getBoardX(), p.getBoardY())
+					.getSpawnSet(frame, p, frame.getTileHandler().getPlayerTile(p)));
 		}
 	}
 

@@ -1,10 +1,12 @@
 package items;
 
+import main.RPGFrame;
+
 public class Bread extends Item {
 
-	public Bread() {
-		super(4,0);
-		
+	public Bread(RPGFrame frame) {
+		super(frame, 4, 0);
+
 	}
 
 }

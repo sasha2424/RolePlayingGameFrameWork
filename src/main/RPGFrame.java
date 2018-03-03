@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 import entitiesHandling.*;
 import rendering.*;
 import saving.SaveHandler;
+import spriteSheets.BasicSpriteSheetLoader;
+import spriteSheets.SpriteSheetLoader;
 import terrain.*;
 
 /***
@@ -67,7 +69,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	// 1 would mean current tile is loaded
 	// 2 would make all surrounding tiles loaded
 	// ...
-	public int LOAD_SIZE = 2;// 2
+	public int LOAD_SIZE = 3;// 2
 
 	// the distance that the player needs to move before tiles are reloaded
 	// if tiles were just loaded and the player travels over X tiles, tiles are
@@ -82,39 +84,41 @@ public class RPGFrame extends JPanel implements Runnable {
 	// use tile size for reference (in "Variables")
 	public int RENDER_DISTANCE_ENTITY = 2000;
 
-	//various Handlers that are used in the game
-	//descriptions can be found in each class
+	// various Handlers that are used in the game
+	// descriptions can be found in each class
 	private TileHandler tileHandler;
 	private InputHandler inputHandler;
 	private EntityHandler entityHandler;
 	private Spawner spawnHandler;
 	private SaveHandler saveHandler;
-	private EventHandler eventHandler;
 	private TerrainGenerator terrainGenerator;
 	private RenderQueue renderQueue;
+	private SpriteSheetLoader spriteSheetLoader;
 
-	//rotation of the board which is changed by scrolling
+	// rotation of the board which is changed by scrolling
 	private double rotation = 0;
-	//rotation of player which is changed by mouse position
+	// rotation of player which is changed by mouse position
 	private double playerRotation = 0;
 
-	//player used in the game
+	// player used in the game
 	private Player player;
 
-	//current game state
-	//0 is the game
-	//1 is the inventory
-	//... more can be added for additional menus and states
+	// current game state
+	// 0 is the game
+	// 1 is the inventory
+	// ... more can be added for additional menus and states
 	private int Tab = 0;
 
 	public RPGFrame() {
-		SpriteSheetLoader.load(DEFAULT_SPRITE_SHEET, DEFAULT_SPRITE_SHEET_SIZE);
+		// create default spriteSheetLoader
+		spriteSheetLoader = new BasicSpriteSheetLoader();
+		// load in the spritesheet
+		spriteSheetLoader.load(DEFAULT_SPRITE_SHEET, DEFAULT_SPRITE_SHEET_SIZE);
+		// get random seed
 		SEED = getSeed();
-		// TODO put this into a debug
-		// System.out.println("Seed: " + SEED);
 
+		// attempt to load player from file (load default on fail)
 		player = loadPlayer();
-
 		System.out.println(player);
 
 		entityHandler = new EntityHandler();
@@ -127,6 +131,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 		inputHandler = new InputHandler();
 		inputHandler.setScrollSensitivity(SCROLL_SENSITIVITY);
+		// setting the keys that are to be tracked by the inputHandler
+		// toggle means that a single press will toggle the key state
+		// notoggle requires the key to be held to keep the pressed state
 		inputHandler.trackNewKey("W", "noToggle");
 		inputHandler.trackNewKey("A", "noToggle");
 		inputHandler.trackNewKey("S", "noToggle");
@@ -140,85 +147,178 @@ public class RPGFrame extends JPanel implements Runnable {
 
 		saveHandler = new SaveHandler();
 
-		eventHandler = new EventHandler();
-
 		renderQueue = new RenderQueue();
 
 	}
 
+	/**
+	 * Set the default window size.
+	 * 
+	 * @param WindowSizeX
+	 *            width of the window
+	 * @param WindowSizeY
+	 *            height of the window
+	 */
 	public void setWindowSize(double WindowSizeX, double WindowSizeY) {
 		WIDTH = WindowSizeX;
 		HEIGHT = WindowSizeY;
 	}
 
+	/**
+	 * Set the seed to be used for the terrain generation.
+	 * 
+	 * @param seed
+	 *            any positive number
+	 */
 	public void setSeed(long seed) {
 		SEED = seed;
 	}
 
+	/**
+	 * Set the sensitivity of scrolling to rotate the board. Usually a
+	 * sensitivity of 2-7 is more than enough.
+	 * 
+	 * @param scrollSensitivity
+	 *            a positive integer
+	 */
 	public void setScrollSensitivity(int scrollSensitivity) {
 		SCROLL_SENSITIVITY = scrollSensitivity;
 	}
 
+	/**
+	 * Set the file to be used when loading in the spritesheet. The file should
+	 * be placed into the spritesheet folder.
+	 * 
+	 * @param fileName
+	 *            name of the file including ending (.png)
+	 */
 	public void setSpriteSheet(String fileName) {
 		DEFAULT_SPRITE_SHEET = "./spritesheets/" + fileName;
 	}
 
+	/**
+	 * Setting the distance from the player to be loaded. All tiles within this
+	 * range will be loaded in. Loading many tiles may lag the game when new
+	 * tiles are being generated and the algorithm for the generation is large.
+	 * 
+	 * @param loadSize
+	 *            integer representing the range of tiles to load
+	 */
 	public void setLoadSize(int loadSize) {
 		LOAD_SIZE = loadSize;
 	}
 
+	/**
+	 * Setting the buffer for how far the player needs to move before new tiles
+	 * are loaded. A standard value is one less than LOAD_SIZE
+	 * 
+	 * @param buffer
+	 *            positive integer that should be less than LOAD_SIZE
+	 */
 	public void setloadBuffer(int buffer) {
 		BUFFER = buffer;
 	}
 
+	/**
+	 * Setting the renderDistance for tiles. All tiles within this distance will
+	 * be rendered.
+	 * 
+	 * @param r
+	 *            positive integer less than or equal to LOAD_SIZE
+	 */
 	public void setTileRenderDistance(int r) {
 		RENDER_DISTANCE_TILE = r;
 	}
 
+	/**
+	 * Setting the range in which all entities are rendered.
+	 * Should be around double the TILE_SIZE for best results.
+	 * @param r positive integer
+	 */
 	public void setEntityRenderDistance(int r) {
 		RENDER_DISTANCE_ENTITY = r;
 	}
 
+	/**
+	 * Add a custom TileHandler.
+	 * @param e TileHandler
+	 */
 	public void addTileHandler(TileHandler e) {
 		tileHandler = e;
 	}
-
+	
+	/**
+	 * Add a custom InputHandler.
+	 * @param e InputHandler
+	 */
 	public void addInputHandler(InputHandler e) {
 		inputHandler = e;
 	}
 
+	/**
+	 * Add a custom EntityHandler.
+	 * @param e EntityHandler
+	 */
 	public void addEntityHandler(EntityHandler e) {
 		entityHandler = e;
 	}
 
+	/**
+	 * Add a custom Spawner.
+	 * @param e Spawner
+	 */
 	public void addSpawner(Spawner e) {
 		spawnHandler = e;
 	}
 
+	/**
+	 * Add a custom SaveHandler.
+	 * @param e SaveHandler
+	 */
 	public void addSaveHandler(SaveHandler e) {
 		saveHandler = e;
 	}
 
-	public void addeventHandler(EventHandler e) {
-		eventHandler = e;
-	}
-
+	/**
+	 * Add a custom TerrainGenerator.
+	 * @param e TerrainGenerator
+	 */
 	public void addTerrainGenerator(TerrainGenerator e) {
 		terrainGenerator = e;
 	}
 
+	/**
+	 * Add a custom RenderQueue.
+	 * @param e RenderQueue
+	 */
 	public void addRenderQueue(RenderQueue e) {
 		renderQueue = e;
 	}
 
+	/**
+	 * Add a custom SpriteSheetLoader.
+	 * @param e SpriteSheetLoader
+	 */
+	public void addSpriteSheetLoader(SpriteSheetLoader e) {
+		spriteSheetLoader = e;
+	}
+
+	/**
+	 * Set a player to be used during the game.
+	 * @param p Player
+	 */
 	public void setPlayer(Player p) {
 		player = p;
 	}
 
+	/**
+	 * Starts the windown and game
+	 */
 	public void start() {
 		this.run();
 	}
 
+	//This is the loop which is run until the game is closed
 	@Override
 	public void run() {
 		JFrame frame = new JFrame("Grim");
@@ -238,7 +338,7 @@ public class RPGFrame extends JPanel implements Runnable {
 			if (dt > 20) {
 				t = System.currentTimeMillis();
 
-				entityHandler.tick(player);
+				entityHandler.tick(this, player);
 				spawnHandler.spawnEntities(this, player);
 
 				// do all player key actions
@@ -247,7 +347,7 @@ public class RPGFrame extends JPanel implements Runnable {
 					player.move(playerRotation - rotation);
 				}
 				if (inputHandler.getKeyPressed("Space") && player.canAttack()) {
-					entityHandler.playerInteract(player, playerRotation - rotation);
+					entityHandler.playerInteract(this, player, playerRotation - rotation);
 					player.resetAttackCounter();
 				}
 
@@ -263,6 +363,7 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	}
 
+	//This is the graphics method in the window
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g2d);
@@ -270,10 +371,10 @@ public class RPGFrame extends JPanel implements Runnable {
 		setPlayerRotation();
 		setBoardRotation();
 
-		if(inputHandler.getKeyPressed("E")){
+		if (inputHandler.getKeyPressed("E")) {
 			Tab = 1;
 			player.inventory.render(this, g2d);
-		}else { // in game
+		} else { // in game
 			Tab = 0;
 			if (!inputHandler.getKeyPressed("Escape")) {
 				// check for when game is closing
@@ -292,6 +393,9 @@ public class RPGFrame extends JPanel implements Runnable {
 		}
 	}
 
+	/*
+	 * Private method to get the rotation of the board from the mouses scroll.
+	 */
 	private void setBoardRotation() {
 		rotation = (2 * Math.PI * inputHandler.getScroll() / 100) % (Math.PI * 2);
 		if (rotation < 0) {
@@ -300,16 +404,22 @@ public class RPGFrame extends JPanel implements Runnable {
 		Variables.setRotation(rotation);
 	}
 
+	/*
+	 * Private method to get the player rotation from the mouse position.
+	 */
 	private void setPlayerRotation() {
 		Point mouse = getMouse();
 		double dx = -mouse.getX() + getCurrentWidth() / 2 + this.getLocationOnScreen().getX();
 		double dy = -mouse.getY() + getCurrentHeight() / 2 + this.getLocationOnScreen().getY();
-		// TODO figure out why?
 		double angle = Math.atan2(dy, dx) + Math.PI;
 		player.setRotation(angle);
 		playerRotation = angle;
 	}
 
+	/**
+	 * Method to get the point on screen where the mouse is located
+	 * @return a Point object representing the mouses location
+	 */
 	private Point getMouse() {
 		Point mouse = MouseInfo.getPointerInfo().getLocation();
 		Point screan = this.getLocation();
@@ -326,6 +436,11 @@ public class RPGFrame extends JPanel implements Runnable {
 		return (double) this.getSize().getHeight();
 	}
 
+	/**
+	 * Gets the seed for the game either from the save file or, if 
+	 * that fails, then a random one is generated.
+	 * @return Long representing the SEED for the game
+	 */
 	private long getSeed() {
 
 		String saveDataFile = "./Save/save.txt";
@@ -345,7 +460,7 @@ public class RPGFrame extends JPanel implements Runnable {
 				Long s = Long.parseLong(text.split("\n")[0]);
 				return s;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// failed to read seed from file
 				e.printStackTrace();
 			}
 
@@ -359,15 +474,21 @@ public class RPGFrame extends JPanel implements Runnable {
 				writer.close();
 				return S;
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+				// failed to write new seed to file
 				e.printStackTrace();
 			}
 		}
 
-		return 0; // seed if file save failed.
+		// seed if file save failed.
+		return 0;
 
 	}
 
+	/**
+	 * This attempts to load a player from the save folder.
+	 * If it fails it returns a default player.
+	 * @return Player
+	 */
 	private Player loadPlayer() {
 		try {
 			FileInputStream fis = new FileInputStream("./Save/player.ser");
@@ -375,8 +496,8 @@ public class RPGFrame extends JPanel implements Runnable {
 			Player p = (Player) in.readObject();
 			in.close();
 			fis.close();
-			p.updateTexture();
-			p.inventory.reloadItemTextures();
+			p.updateTexture(this);
+			p.inventory.reloadItemTextures(this);
 			return p;
 		} catch (FileNotFoundException ex) {
 		} catch (IOException e) {
@@ -385,9 +506,14 @@ public class RPGFrame extends JPanel implements Runnable {
 
 		System.out.println("player load failed");
 
-		return new Player(0, 0, new int[] { 1 }, new int[] { 0 });
+		// default player
+		return new Player(this, 0, 0, new int[] { 1 }, new int[] { 0 });
 	}
 
+	/**
+	 * This saves the player into the save folder.
+	 * @param p Player to be saved
+	 */
 	private void savePlayer(Player p) {
 		try {
 			String save = "./Save/player.ser";
@@ -413,6 +539,26 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	public EntityHandler getEntityHandler() {
 		return entityHandler;
+	}
+
+	public SpriteSheetLoader getSpriteSheetLoader() {
+		return spriteSheetLoader;
+	}
+
+	public InputHandler getInputHandler() {
+		return inputHandler;
+	}
+
+	public Spawner getSpawnHandler() {
+		return spawnHandler;
+	}
+
+	public SaveHandler getSaveHandler() {
+		return saveHandler;
+	}
+
+	public RenderQueue getRenderQueue() {
+		return renderQueue;
 	}
 
 }

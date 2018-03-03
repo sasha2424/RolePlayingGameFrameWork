@@ -24,11 +24,11 @@ public class Inventory implements Serializable {
 		inventory = new Item[WIDTH][HEIGHT];
 	}
 
-	public void reloadItemTextures() {
+	public void reloadItemTextures(RPGFrame frame) {
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
 				if (inventory[i][j] != null) {
-					inventory[i][j].updateTexture();
+					inventory[i][j].updateTexture(frame);
 				}
 			}
 		}
