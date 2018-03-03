@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import handlers.SpriteSheetLoader;
+
 public class BasicSpriteSheetLoader extends SpriteSheetLoader {
 
 	public void load(String file, int size) {

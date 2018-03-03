@@ -1,17 +1,28 @@
-package rendering;
+package handlers;
 
 import java.awt.Graphics2D;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
-import entitiesHandling.Entity;
-import entitiesHandling.Player;
+import entitieStructure.Entity;
+import entitieStructure.Player;
 import main.RPGFrame;
-import terrain.TerrainGenerator;
+import rendering.Renderable;
 import terrain.Tile;
 
 public class RenderQueue {
+	
+	/**
+	 * RENDERQUEUE
+	 * 
+	 * Temporarily stores Renderable objects.
+	 * Once the RenderAll() method is called objects are sorted based on
+	 * the order in which they should be rendered and are displayed unto the screen.
+	 * 
+	 * The RenderQueue needs to be externally cleared after rendering.
+	 * 
+	 */
 
 	ArrayList<Tile> toRender;
 
@@ -28,7 +39,7 @@ public class RenderQueue {
 			toRender.add((Tile) e);
 		} else {
 			for (Tile t : toRender) {
-				if (t.inBorder(e.getAbsX(), e.absY)) {
+				if (t.inBorder(e.getAbsX(), e.getAbsY())) {
 					t.addRenderable(e);
 				}
 			}

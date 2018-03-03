@@ -6,12 +6,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
+import entitieStructure.Entity;
+import entitieStructure.Player;
 import entities.Walker;
-import entitiesHandling.Entity;
-import entitiesHandling.Player;
+import handlers.SpriteSheetLoader;
 import main.RPGFrame;
 import main.Variables;
-import spriteSheets.SpriteSheetLoader;
 
 public abstract class Biome implements Serializable {
 

@@ -1,13 +1,22 @@
-package terrain;
+package handlers;
 
 import java.util.ArrayList;
-import entitiesHandling.EntityHandler;
-import entitiesHandling.Player;
+
+import entitieStructure.Player;
 import main.RPGFrame;
 import main.Variables;
-import rendering.RenderQueue;
+import terrain.Tile;
 
 public class TileHandler {
+	
+	/**
+	 * ENTITYHANDLER
+	 * 
+	 * This manages all of the tiles in the game.
+	 * Performs Rendering and provides various methods for modifying the tiles set
+	 * and receiving certain tiles. 
+	 * 
+	 */
 
 	private ArrayList<Tile> tiles;
 

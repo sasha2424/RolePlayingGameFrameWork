@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.Serializable;
 
+import handlers.SpriteSheetLoader;
 import main.RPGFrame;
-import spriteSheets.SpriteSheetLoader;
 
 public class Item implements Serializable {
 

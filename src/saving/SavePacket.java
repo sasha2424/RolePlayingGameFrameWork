@@ -3,7 +3,7 @@ package saving;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import entitiesHandling.Entity;
+import entitieStructure.Entity;
 import terrain.Tile;
 
 public class SavePacket implements Serializable {

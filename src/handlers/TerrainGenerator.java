@@ -1,9 +1,16 @@
-package terrain;
+package handlers;
 
-import entitiesHandling.Entity;
+import entitieStructure.Entity;
+import terrain.Biome;
 
 public abstract class TerrainGenerator {
-	//generates terrain height and biome for any given board coordinate
+	/**
+	 * TERRAINGENERATOR
+	 * 
+	 * Generates the height and biome for any given tile location.
+	 * This is only used when new tiles are created.
+	 * Example height and biome generation algorithms are present in BasicTerrainGenerator
+	 */
 	
 	protected long SEED;
 	

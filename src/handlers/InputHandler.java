@@ -1,4 +1,4 @@
-package main;
+package handlers;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,6 +9,12 @@ import java.awt.event.MouseWheelListener;
 import java.util.ArrayList;
 
 public class InputHandler implements KeyListener, MouseWheelListener {
+	/**
+	 * INPUTHANDLER
+	 * 
+	 * This keeps track of the mouse position, mouse scroll, and certain keys.
+	 * keys can be set with the trackNewKey() method
+	 */
 	private ArrayList<Key> keys;
 
 	private int scroll;

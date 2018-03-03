@@ -1,10 +1,11 @@
-package entitiesHandling;
+package entitieStructure;
 
 import java.awt.Graphics2D;
 
+import handlers.EntityHandler;
+import handlers.TerrainGenerator;
 import items.Item;
 import main.RPGFrame;
-import terrain.TerrainGenerator;
 import terrain.Tile;
 
 public class ItemDrop extends Entity {

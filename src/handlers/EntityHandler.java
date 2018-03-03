@@ -1,12 +1,22 @@
-package entitiesHandling;
+package handlers;
 
 import java.util.ArrayList;
 
+import entitieStructure.Entity;
+import entitieStructure.Player;
 import main.RPGFrame;
-import rendering.RenderQueue;
 import terrain.Tile;
 
 public class EntityHandler {
+	/**
+	 * ENTITYHANDLER
+	 * 
+	 * This manages all of the entities in the game.
+	 * -draw
+	 * -tick
+	 * Also give each entity a way to search for 
+	 * nearby entities and interact with their surroundings.
+	 */
 
 	private ArrayList<Entity> entities;
 

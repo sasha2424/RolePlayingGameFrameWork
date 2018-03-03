@@ -4,8 +4,8 @@ import java.awt.Graphics2D;
 
 import java.io.Serializable;
 
-import entitiesHandling.Entity;
-import entitiesHandling.Player;
+import entitieStructure.Entity;
+import entitieStructure.Player;
 import main.RPGFrame;
 import main.Variables;
 import terrain.Tile;

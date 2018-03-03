@@ -1,9 +1,9 @@
-package entitiesHandling;
+package entitieStructure;
 
 import java.awt.Graphics2D;
 
+import handlers.TerrainGenerator;
 import main.RPGFrame;
-import terrain.TerrainGenerator;
 import terrain.Tile;
 
 public class Particle extends StationaryEntity {

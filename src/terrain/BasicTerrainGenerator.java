@@ -3,6 +3,7 @@ package terrain;
 import java.util.Random;
 
 import biomes.Desert;
+import handlers.TerrainGenerator;
 
 public class BasicTerrainGenerator extends TerrainGenerator {
 

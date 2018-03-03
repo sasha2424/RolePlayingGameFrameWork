@@ -1,14 +1,14 @@
-package entitiesHandling;
+package entitieStructure;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.Serializable;
 
+import handlers.SpriteSheetLoader;
 import main.DoubleStat;
 import main.RPGFrame;
 import main.Variables;
 import rendering.Renderable;
-import spriteSheets.SpriteSheetLoader;
 import terrain.Tile;
 
 public abstract class Entity extends Renderable implements Serializable {

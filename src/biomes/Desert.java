@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import entitieStructure.Entity;
+import entitieStructure.Player;
 import entities.Grass;
 import entities.Rat;
 import entities.Rock;
-import entitiesHandling.Entity;
-import entitiesHandling.Player;
 import main.RPGFrame;
 import terrain.Biome;
 import terrain.Tile;

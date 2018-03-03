@@ -20,11 +20,17 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import entitiesHandling.*;
+import entitieStructure.*;
+import handlers.EntityHandler;
+import handlers.InputHandler;
+import handlers.RenderQueue;
+import handlers.SaveHandler;
+import handlers.Spawner;
+import handlers.SpriteSheetLoader;
+import handlers.TerrainGenerator;
+import handlers.TileHandler;
 import rendering.*;
-import saving.SaveHandler;
 import spriteSheets.BasicSpriteSheetLoader;
-import spriteSheets.SpriteSheetLoader;
 import terrain.*;
 
 /***

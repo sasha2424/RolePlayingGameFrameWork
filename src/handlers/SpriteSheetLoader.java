@@ -1,4 +1,4 @@
-package spriteSheets;
+package handlers;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -8,6 +8,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public abstract class SpriteSheetLoader {
+	
+	/**
+	 * SPRITESHEETLOADER
+	 * 
+	 * Loads in a specific image file and returns crops of it for each individual entity.
+	 */
 
 	protected BufferedImage Entities;
 

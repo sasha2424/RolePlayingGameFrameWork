@@ -1,4 +1,4 @@
-package saving;
+package handlers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,17 +9,24 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import entitiesHandling.Entity;
-import entitiesHandling.EntityHandler;
-import entitiesHandling.Player;
+import entitieStructure.Entity;
+import entitieStructure.Player;
 import main.RPGFrame;
 import main.Variables;
+import saving.SavePacket;
 import terrain.Biome;
-import terrain.TerrainGenerator;
 import terrain.Tile;
-import terrain.TileHandler;
 
 public class SaveHandler {
+	/**
+	 * SAVEHANDLER
+	 * 
+	 * This saves and loads tiles and entities based on the player position.
+	 * LOAD_SIZE in RPGFrame is the range of tiles that are loaded.
+	 * Tiles and their contained entities are stored in SavePackets and are serialized
+	 * into the save folder.
+	 */
+	
 	private int oldX;
 	private int oldY;
 
