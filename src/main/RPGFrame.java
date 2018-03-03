@@ -25,31 +25,65 @@ import rendering.*;
 import saving.SaveHandler;
 import terrain.*;
 
+/***
+ * @author Alexander Ivanov
+ * 
+ *         FrameWork for sky-view, 3rd person, RPG games. Instance should be
+ *         created in another class Then methods should be used to change
+ *         default parameters.
+ *
+ */
+
 public class RPGFrame extends JPanel implements Runnable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	// TODO make different for each class
 
+	/*
+	 * Variables currently stored in "Variables.java"
+	 *
+	 * size of tiles: TILE_SIZE rotation of board: rotation
+	 */
+
+	// default window size
 	private double WIDTH = 600;
 	private double HEIGHT = 600;
+
+	// random Seed for terrainGeneration
+	// can be set to a value to force identical terrain on each run
 	private long SEED;
 
+	// scale for the scroll sensitivity
+	// ranges from 1 to unlimited although over 10 is not recommended
 	private int SCROLL_SENSITIVITY = 4;
-	// TODO move to input Handler
 
+	// file path for the image containing all of the in-game graphics
 	private String DEFAULT_SPRITE_SHEET = "./spritesheets/Entities.png";
-	// TODO make the file location set-able
+
+	// the size of each entities texture
 	private int DEFAULT_SPRITE_SHEET_SIZE = 10;
 
+	// the range of tiles to always be loaded by the game
+	// 1 would mean current tile is loaded
+	// 2 would make all surrounding tiles loaded
+	// ...
 	public int LOAD_SIZE = 2;// 2
+
+	// the distance that the player needs to move before tiles are reloaded
+	// if tiles were just loaded and the player travels over X tiles, tiles are
+	// reloaded
 	public int BUFFER = 1;
 
+	// range of tiles to render
+	// tiles may be loaded but this limit which ones will be rendered
 	public int RENDER_DISTANCE_TILE = 2;
+
+	// range in which entities will be rendered
+	// use tile size for reference (in "Variables")
 	public int RENDER_DISTANCE_ENTITY = 2000;
 
+	//various Handlers that are used in the game
+	//descriptions can be found in each class
 	private TileHandler tileHandler;
 	private InputHandler inputHandler;
 	private EntityHandler entityHandler;
@@ -59,11 +93,18 @@ public class RPGFrame extends JPanel implements Runnable {
 	private TerrainGenerator terrainGenerator;
 	private RenderQueue renderQueue;
 
+	//rotation of the board which is changed by scrolling
 	private double rotation = 0;
+	//rotation of player which is changed by mouse position
 	private double playerRotation = 0;
 
+	//player used in the game
 	private Player player;
 
+	//current game state
+	//0 is the game
+	//1 is the inventory
+	//... more can be added for additional menus and states
 	private int Tab = 0;
 
 	public RPGFrame() {
@@ -113,30 +154,31 @@ public class RPGFrame extends JPanel implements Runnable {
 	public void setSeed(long seed) {
 		SEED = seed;
 	}
-	
-	public void setScrollSensitivity(int scrollSensitivity){
+
+	public void setScrollSensitivity(int scrollSensitivity) {
 		SCROLL_SENSITIVITY = scrollSensitivity;
 	}
-	
-	public void setSpriteSheet(String fileName){
+
+	public void setSpriteSheet(String fileName) {
 		DEFAULT_SPRITE_SHEET = "./spritesheets/" + fileName;
 	}
-	
-	public void setLoadSize(int loadSize){
+
+	public void setLoadSize(int loadSize) {
 		LOAD_SIZE = loadSize;
 	}
-	
-	public void setloadBuffer(int buffer){
+
+	public void setloadBuffer(int buffer) {
 		BUFFER = buffer;
 	}
 
-	public void setTileRenderDistance(int r){
+	public void setTileRenderDistance(int r) {
 		RENDER_DISTANCE_TILE = r;
 	}
-	
-	public void setEntityRenderDistance(int r){
+
+	public void setEntityRenderDistance(int r) {
 		RENDER_DISTANCE_ENTITY = r;
 	}
+
 	public void addTileHandler(TileHandler e) {
 		tileHandler = e;
 	}
@@ -168,8 +210,8 @@ public class RPGFrame extends JPanel implements Runnable {
 	public void addRenderQueue(RenderQueue e) {
 		renderQueue = e;
 	}
-	
-	public void setPlayer(Player p){
+
+	public void setPlayer(Player p) {
 		player = p;
 	}
 
@@ -228,7 +270,11 @@ public class RPGFrame extends JPanel implements Runnable {
 		setPlayerRotation();
 		setBoardRotation();
 
-		if (Tab == 0) { // in game
+		if(inputHandler.getKeyPressed("E")){
+			Tab = 1;
+			player.inventory.render(this, g2d);
+		}else { // in game
+			Tab = 0;
 			if (!inputHandler.getKeyPressed("Escape")) {
 				// check for when game is closing
 
@@ -243,12 +289,6 @@ public class RPGFrame extends JPanel implements Runnable {
 
 				player.inventory.renderHandBar(this, g2d);
 			}
-		}
-		if (inputHandler.getKeyPressed("E")) { // inventory
-			Tab = 1;
-			player.inventory.render(this, g2d);
-		} else {
-			Tab = 0;
 		}
 	}
 
