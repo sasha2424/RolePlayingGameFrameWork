@@ -2,38 +2,29 @@ package handlers;
 
 import java.util.ArrayList;
 
-import entitieStructure.Player;
+import entitieHandling.Player;
 import main.RPGFrame;
 import main.Variables;
 import terrain.Tile;
 
-public class TileHandler {
-	
+public abstract class TileHandler {
+
 	/**
 	 * ENTITYHANDLER
 	 * 
-	 * This manages all of the tiles in the game.
-	 * Performs Rendering and provides various methods for modifying the tiles set
-	 * and receiving certain tiles. 
+	 * This manages all of the tiles in the game. Performs Rendering and
+	 * provides various methods for modifying the tiles set and receiving
+	 * certain tiles.
 	 * 
 	 */
 
-	private ArrayList<Tile> tiles;
+	protected ArrayList<Tile> tiles;
 
-	public TileHandler(EntityHandler e) {
+	public TileHandler() {
 		tiles = new ArrayList<Tile>();
 	}
 
-	public void renderAll(RPGFrame frame, RenderQueue renderQueue, Player p) {
-		for (int i = 0; i < tiles.size(); i++) {
-			Tile t = tiles.get(i);
-
-			if (Math.abs(t.getBoardX() - p.getBoardX()) < frame.RENDER_DISTANCE_TILE
-					&& Math.abs(t.getBoardY() - p.getBoardY()) < frame.RENDER_DISTANCE_TILE) {
-				renderQueue.addRenderable(t);
-			}
-		}
-	}
+	public abstract void renderAll(RPGFrame frame, RenderQueue renderQueue, Player p);
 
 	public double[] getAdjacentTileHeights(int x, int y) {
 		double[] r = new double[4];
@@ -91,17 +82,7 @@ public class TileHandler {
 		tiles.add(t);
 	}
 
-	public ArrayList<Tile> getTilesToSave(int LOAD_SIZE, int playerX, int playerY) {
-		ArrayList<Tile> r = new ArrayList<Tile>();
-		for (int i = 0; i < tiles.size(); i++) {
-			Tile t = tiles.get(i);
-			if (Math.abs(t.getBoardX() - playerX) > LOAD_SIZE || Math.abs(t.getBoardY() - playerY) > LOAD_SIZE) {
-				r.add(tiles.remove(i));
-				i--;
-			}
-		}
-		return r;
-	}
+	public abstract ArrayList<Tile> getTilesToSave(int LOAD_SIZE, int playerX, int playerY);
 
 	public Tile removeTile(int BoardX, int BoardY) {
 		for (int i = 0; i < tiles.size(); i++) {
@@ -119,6 +100,11 @@ public class TileHandler {
 		tiles.remove(t);
 	}
 
+	/**
+	 * Returns all of the tiles but also deletes them from this class.
+	 * 
+	 * @return ArrayList of Tiles currently loaded
+	 */
 	public ArrayList<Tile> getAllTiles() {
 		ArrayList<Tile> r = new ArrayList<Tile>();
 		for (int i = 0; i < tiles.size(); i++) {

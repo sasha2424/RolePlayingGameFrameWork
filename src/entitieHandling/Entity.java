@@ -1,4 +1,4 @@
-package entitieStructure;
+package entitieHandling;
 
 import java.awt.Graphics2D;
 import java.awt.Image;

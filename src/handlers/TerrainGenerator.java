@@ -1,6 +1,6 @@
 package handlers;
 
-import entitieStructure.Entity;
+import entitieHandling.Entity;
 import terrain.Biome;
 
 public abstract class TerrainGenerator {

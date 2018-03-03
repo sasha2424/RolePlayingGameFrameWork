@@ -1,6 +1,6 @@
 package handlers;
 
-import entitieStructure.Player;
+import entitieHandling.Player;
 import main.RPGFrame;
 
 public abstract class Spawner {

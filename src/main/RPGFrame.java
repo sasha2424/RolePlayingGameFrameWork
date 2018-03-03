@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import entitieStructure.*;
+import entitieHandling.*;
 import handlers.EntityHandler;
 import handlers.InputHandler;
 import handlers.RenderQueue;
@@ -127,13 +127,13 @@ public class RPGFrame extends JPanel implements Runnable {
 		player = loadPlayer();
 		System.out.println(player);
 
-		entityHandler = new EntityHandler();
+		entityHandler = new BasicEntityHandler();
 
 		entityHandler.addEntity(player);
 
 		terrainGenerator = new BasicTerrainGenerator(SEED);
 
-		tileHandler = new TileHandler(entityHandler);
+		tileHandler = new BasicTileHandler();
 
 		inputHandler = new InputHandler();
 		inputHandler.setScrollSensitivity(SCROLL_SENSITIVITY);
@@ -153,7 +153,7 @@ public class RPGFrame extends JPanel implements Runnable {
 
 		saveHandler = new SaveHandler();
 
-		renderQueue = new RenderQueue();
+		renderQueue = new BasicRenderQueue();
 
 	}
 
@@ -237,9 +237,11 @@ public class RPGFrame extends JPanel implements Runnable {
 	}
 
 	/**
-	 * Setting the range in which all entities are rendered.
-	 * Should be around double the TILE_SIZE for best results.
-	 * @param r positive integer
+	 * Setting the range in which all entities are rendered. Should be around
+	 * double the TILE_SIZE for best results.
+	 * 
+	 * @param r
+	 *            positive integer
 	 */
 	public void setEntityRenderDistance(int r) {
 		RENDER_DISTANCE_ENTITY = r;
@@ -247,15 +249,19 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom TileHandler.
-	 * @param e TileHandler
+	 * 
+	 * @param e
+	 *            TileHandler
 	 */
 	public void addTileHandler(TileHandler e) {
 		tileHandler = e;
 	}
-	
+
 	/**
 	 * Add a custom InputHandler.
-	 * @param e InputHandler
+	 * 
+	 * @param e
+	 *            InputHandler
 	 */
 	public void addInputHandler(InputHandler e) {
 		inputHandler = e;
@@ -263,7 +269,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom EntityHandler.
-	 * @param e EntityHandler
+	 * 
+	 * @param e
+	 *            EntityHandler
 	 */
 	public void addEntityHandler(EntityHandler e) {
 		entityHandler = e;
@@ -271,7 +279,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom Spawner.
-	 * @param e Spawner
+	 * 
+	 * @param e
+	 *            Spawner
 	 */
 	public void addSpawner(Spawner e) {
 		spawnHandler = e;
@@ -279,7 +289,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom SaveHandler.
-	 * @param e SaveHandler
+	 * 
+	 * @param e
+	 *            SaveHandler
 	 */
 	public void addSaveHandler(SaveHandler e) {
 		saveHandler = e;
@@ -287,7 +299,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom TerrainGenerator.
-	 * @param e TerrainGenerator
+	 * 
+	 * @param e
+	 *            TerrainGenerator
 	 */
 	public void addTerrainGenerator(TerrainGenerator e) {
 		terrainGenerator = e;
@@ -295,7 +309,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom RenderQueue.
-	 * @param e RenderQueue
+	 * 
+	 * @param e
+	 *            RenderQueue
 	 */
 	public void addRenderQueue(RenderQueue e) {
 		renderQueue = e;
@@ -303,7 +319,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Add a custom SpriteSheetLoader.
-	 * @param e SpriteSheetLoader
+	 * 
+	 * @param e
+	 *            SpriteSheetLoader
 	 */
 	public void addSpriteSheetLoader(SpriteSheetLoader e) {
 		spriteSheetLoader = e;
@@ -311,7 +329,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Set a player to be used during the game.
-	 * @param p Player
+	 * 
+	 * @param p
+	 *            Player
 	 */
 	public void setPlayer(Player p) {
 		player = p;
@@ -324,7 +344,7 @@ public class RPGFrame extends JPanel implements Runnable {
 		this.run();
 	}
 
-	//This is the loop which is run until the game is closed
+	// This is the loop which is run until the game is closed
 	@Override
 	public void run() {
 		JFrame frame = new JFrame("Grim");
@@ -369,7 +389,7 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	}
 
-	//This is the graphics method in the window
+	// This is the graphics method in the window
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponent(g2d);
@@ -424,6 +444,7 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * Method to get the point on screen where the mouse is located
+	 * 
 	 * @return a Point object representing the mouses location
 	 */
 	private Point getMouse() {
@@ -443,8 +464,9 @@ public class RPGFrame extends JPanel implements Runnable {
 	}
 
 	/**
-	 * Gets the seed for the game either from the save file or, if 
-	 * that fails, then a random one is generated.
+	 * Gets the seed for the game either from the save file or, if that fails,
+	 * then a random one is generated.
+	 * 
 	 * @return Long representing the SEED for the game
 	 */
 	private long getSeed() {
@@ -491,8 +513,9 @@ public class RPGFrame extends JPanel implements Runnable {
 	}
 
 	/**
-	 * This attempts to load a player from the save folder.
-	 * If it fails it returns a default player.
+	 * This attempts to load a player from the save folder. If it fails it
+	 * returns a default player.
+	 * 
 	 * @return Player
 	 */
 	private Player loadPlayer() {
@@ -518,7 +541,9 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	/**
 	 * This saves the player into the save folder.
-	 * @param p Player to be saved
+	 * 
+	 * @param p
+	 *            Player to be saved
 	 */
 	private void savePlayer(Player p) {
 		try {

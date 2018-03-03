@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import entitieStructure.Entity;
-import entitieStructure.Player;
+import entitieHandling.Entity;
+import entitieHandling.Player;
 import entities.Grass;
 import entities.Rat;
 import entities.Rock;

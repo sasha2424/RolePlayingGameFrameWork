@@ -2,10 +2,10 @@ package entities;
 
 import java.awt.Graphics2D;
 
-import entitieStructure.Entity;
-import entitieStructure.ItemDrop;
-import entitieStructure.MovingEntity;
-import entitieStructure.Player;
+import entitieHandling.Entity;
+import entitieHandling.ItemDrop;
+import entitieHandling.MovingEntity;
+import entitieHandling.Player;
 import handlers.EntityHandler;
 import items.Fur;
 import main.DoubleStat;

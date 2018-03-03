@@ -1,4 +1,4 @@
-package entitieStructure;
+package entitieHandling;
 
 import main.RPGFrame;
 

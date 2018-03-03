@@ -9,8 +9,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import entitieStructure.Entity;
-import entitieStructure.Player;
+import entitieHandling.Entity;
+import entitieHandling.Player;
 import main.RPGFrame;
 import main.Variables;
 import saving.SavePacket;

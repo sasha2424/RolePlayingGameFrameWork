@@ -1,6 +1,6 @@
 package terrain;
 
-import entitieStructure.Player;
+import entitieHandling.Player;
 import handlers.EntityHandler;
 import handlers.Spawner;
 import main.RPGFrame;

@@ -1,4 +1,4 @@
-package entitieStructure;
+package entitieHandling;
 
 import java.awt.Graphics2D;
 import java.io.Serializable;
@@ -18,10 +18,10 @@ public class Player extends MovingEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public static final double speed = 10;
-	public static final double interactDistance = 80;
-	public static final double interectAngle = Math.PI / 8;
-	public static final int attackDelay = 10;
+	public final double speed = 10;
+	public final double interactDistance = 80;
+	public final double interectAngle = Math.PI / 8;
+	public final int attackDelay = 10;
 	private int attackTickCount = 0;
 	public Inventory inventory;
 
