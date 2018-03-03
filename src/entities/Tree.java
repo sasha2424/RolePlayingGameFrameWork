@@ -20,12 +20,7 @@ public class Tree extends StationaryEntity {
 	}
 
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
-
-		double x = (double) (getX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
-		double y = (double) (getY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
-
-		g.drawImage(texture[0], (int) (x - size / 2), (int) (y + height - size), size, size, null);
-
+		super.standardDraw(w, g, player, rotation, height,0);
 	}
 
 	@Override

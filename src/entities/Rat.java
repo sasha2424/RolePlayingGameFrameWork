@@ -43,8 +43,8 @@ public class Rat extends MovingEntity {
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
 		// TODO draw graphics in super class method (because all the same)
 
-		double x = (double) (getX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
-		double y = (double) (getY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
+		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
+		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
 
 		double angle = EntityHandler.getAngle(this, player);
 

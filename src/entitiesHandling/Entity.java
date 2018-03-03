@@ -131,12 +131,26 @@ public abstract class Entity extends Renderable implements Serializable {
 		HP.set(hP);
 	}
 
-	protected static double getX(double x, double y, double r, double ScreanWidth) {
+	protected static double getStandardRenderX(double x, double y, double r, double ScreanWidth) {
 		return (x) * Math.cos(r) - (y) * Math.sin(r) + ScreanWidth;
 	}
 
-	protected static double getY(double x, double y, double r, double ScreanHeight) {
+	protected static double getStandardRenderY(double x, double y, double r, double ScreanHeight) {
 		return (y) * Math.cos(r) + (x) * Math.sin(r) + ScreanHeight;
+	}
+	
+	protected void standardDraw(RPGFrame w, Graphics2D g, Player player, double rotation, double height,int textureNum){
+		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
+		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
+
+		double ownHeight = w.getTerrainGenerator().getEntityHeight(this);
+		double deltaH = height - ownHeight;
+		g.drawImage(texture[textureNum], (int) (x - size / 2), (int) (y  + deltaH- size), size, size, null);
+	}
+	
+	public double getHeightDifference(RPGFrame w, double playerHeight){
+		double ownHeight = w.getTerrainGenerator().getEntityHeight(this);
+		return playerHeight - ownHeight;
 	}
 
 	public String getName() {

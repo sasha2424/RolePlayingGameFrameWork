@@ -24,10 +24,12 @@ public class ItemDrop extends Entity {
 
 	@Override
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
-		double x = (double) (getX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
-		double y = (double) (getY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
+		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
+		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
 
-		item.drawOnGround(g, (int) (x - size / 2), (int) (y - size / 2 + height));
+		double deltaH = getHeightDifference(w,height);
+		
+		item.drawOnGround(g, (int) (x - size / 2), (int) (y - size / 2 + deltaH));
 
 	}
 

@@ -35,13 +35,10 @@ public class Desert extends Biome {
 	@Override
 	public ArrayList<Entity> generateEntitiesForTile(Tile t) {
 		ArrayList<Entity> e = new ArrayList<Entity>();
-		for (int i = 0; i < 10; i++) {
-			e.add(new Rock(this.random(t.getBoardX()), this.random(t.getBoardY())));
-		}
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			e.add(new Grass(this.random(t.getBoardX()), this.random(t.getBoardY())));
 		}
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 			e.add(new Grass(this.random(t.getBoardX()), this.random(t.getBoardY())));
 		}
 		return e;

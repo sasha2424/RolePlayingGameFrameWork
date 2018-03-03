@@ -25,11 +25,12 @@ public class Particle extends StationaryEntity {
 
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
 
-		double x = (double) (getX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
-		double y = (double) (getY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
+		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentWidth() / 2));
+		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation, w.getCurrentHeight() / 2));
 
+		double deltaH = getHeightDifference(w,height);
 		int k = 40;
-		g.drawImage(texture[(int) (animation / TICKS_PER_TEXTURE)], (int) (x - k / 2), (int) (y + height - k), k, k,
+		g.drawImage(texture[(int) (animation / TICKS_PER_TEXTURE)], (int) (x - k / 2), (int) (y + deltaH - k), k, k,
 				null);
 
 		animation++;
