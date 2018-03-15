@@ -1,6 +1,6 @@
 package handlers;
 
-import entitieHandling.Player;
+import entityHandling.Player;
 import main.RPGFrame;
 
 /**

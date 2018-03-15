@@ -8,8 +8,8 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import entitieHandling.Entity;
-import entitieHandling.Player;
+import entityHandling.Entity;
+import entityHandling.Player;
 import main.RPGFrame;
 import main.Variables;
 import rendering.Renderable;

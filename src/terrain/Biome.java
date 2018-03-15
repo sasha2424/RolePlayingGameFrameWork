@@ -6,9 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-import entitieHandling.Entity;
-import entitieHandling.Player;
 import entities.Walker;
+import entityHandling.Entity;
+import entityHandling.Player;
 import handlers.SpriteSheetLoader;
 import main.RPGFrame;
 import main.Variables;
@@ -24,10 +24,10 @@ public abstract class Biome implements Serializable {
 	private int tickCounter;
 	protected int tickCounterMax = 100;
 
-	// ge the color of the surface
+	// get the color of the surface
 	public abstract Color getSurfaceColor();
 
-	// Get the color of the sub-surface
+	// get the color of the sub-surface
 	public abstract Color getGroundColor();
 
 	// return a texture for the surface

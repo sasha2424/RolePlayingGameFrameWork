@@ -4,8 +4,8 @@ import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 
-import entitieHandling.Player;
-import entitieHandling.StationaryEntity;
+import entityHandling.Player;
+import entityHandling.StationaryEntity;
 import handlers.EntityHandler;
 import main.RPGFrame;
 import terrain.Tile;

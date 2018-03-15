@@ -5,8 +5,8 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import entitieHandling.Entity;
-import entitieHandling.Player;
+import entityHandling.Entity;
+import entityHandling.Player;
 import main.RPGFrame;
 import rendering.Renderable;
 import terrain.Tile;

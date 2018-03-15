@@ -1,6 +1,6 @@
 package handlers;
 
-import entitieHandling.Entity;
+import entityHandling.Entity;
 import terrain.Biome;
 
 /**

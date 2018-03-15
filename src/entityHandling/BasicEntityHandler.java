@@ -1,4 +1,4 @@
-package entitieHandling;
+package entityHandling;
 
 import handlers.EntityHandler;
 import handlers.RenderQueue;

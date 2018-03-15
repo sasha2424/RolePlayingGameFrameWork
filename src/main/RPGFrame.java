@@ -20,7 +20,7 @@ import java.io.PrintWriter;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import entitieHandling.*;
+import entityHandling.*;
 import handlers.EntityHandler;
 import handlers.InputHandler;
 import handlers.RenderQueue;

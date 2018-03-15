@@ -2,7 +2,7 @@ package terrain;
 
 import java.util.ArrayList;
 
-import entitieHandling.Player;
+import entityHandling.Player;
 import handlers.EntityHandler;
 import handlers.RenderQueue;
 import handlers.TileHandler;

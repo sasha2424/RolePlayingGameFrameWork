@@ -2,7 +2,7 @@ package handlers;
 
 import java.util.ArrayList;
 
-import entitieHandling.Player;
+import entityHandling.Player;
 import main.RPGFrame;
 import main.Variables;
 import terrain.Tile;

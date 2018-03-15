@@ -3,7 +3,7 @@ package rendering;
 import java.awt.Graphics2D;
 import java.util.Collections;
 
-import entitieHandling.Player;
+import entityHandling.Player;
 import handlers.RenderQueue;
 import main.RPGFrame;
 import terrain.Tile;
