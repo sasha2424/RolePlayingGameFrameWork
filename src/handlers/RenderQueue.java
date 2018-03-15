@@ -11,18 +11,18 @@ import main.RPGFrame;
 import rendering.Renderable;
 import terrain.Tile;
 
-public abstract class RenderQueue {
+/**
+ * RENDERQUEUE
+ * 
+ * Temporarily stores Renderable objects. Once the RenderAll() method is called
+ * objects are sorted based on the order in which they should be rendered and
+ * are displayed unto the screen;
+ * 
+ * The RenderQueue needs to be externally cleared after rendering;
+ * 
+ */
 
-	/**
-	 * RENDERQUEUE
-	 * 
-	 * Temporarily stores Renderable objects. Once the RenderAll() method is
-	 * called objects are sorted based on the order in which they should be
-	 * rendered and are displayed unto the screen;
-	 * 
-	 * The RenderQueue needs to be externally cleared after rendering;
-	 * 
-	 */
+public abstract class RenderQueue {
 
 	protected ArrayList<Tile> toRender;
 

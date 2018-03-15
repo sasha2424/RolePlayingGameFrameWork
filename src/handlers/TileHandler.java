@@ -7,16 +7,16 @@ import main.RPGFrame;
 import main.Variables;
 import terrain.Tile;
 
+/**
+ * TILEHANDLER
+ * 
+ * This manages all of the tiles in the game. Performs Rendering and
+ * provides various methods for modifying the tiles set and receiving
+ * certain tiles.
+ * 
+ */
 public abstract class TileHandler {
 
-	/**
-	 * ENTITYHANDLER
-	 * 
-	 * This manages all of the tiles in the game. Performs Rendering and
-	 * provides various methods for modifying the tiles set and receiving
-	 * certain tiles.
-	 * 
-	 */
 
 	protected ArrayList<Tile> tiles;
 

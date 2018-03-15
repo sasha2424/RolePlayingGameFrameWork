@@ -7,14 +7,14 @@ import entitieHandling.Player;
 import main.RPGFrame;
 import terrain.Tile;
 
+/**
+ * ENTITYHANDLER
+ * 
+ * This manages all of the entities in the game. -draw -tick Also give each
+ * entity a way to search for nearby entities and interact with their
+ * surroundings.
+ */
 public abstract class EntityHandler {
-	/**
-	 * ENTITYHANDLER
-	 * 
-	 * This manages all of the entities in the game. -draw -tick Also give each
-	 * entity a way to search for nearby entities and interact with their
-	 * surroundings.
-	 */
 
 	protected ArrayList<Entity> entities;
 
