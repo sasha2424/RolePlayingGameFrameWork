@@ -20,23 +20,24 @@ public class BasicTerrainGenerator extends TerrainGenerator {
 
 		int rangeout = 4;
 		int rangein = 2;
+		int totalBiomes = 0;
 
 		// blur of size 4
-		int[] count = new int[Biome.TOTAL_BIOMES];
+		int[] count = new int[totalBiomes];
 		for (int a = i - rangeout; a < i + rangeout; a++) {
 			for (int b = j - rangeout; b < j + rangeout; b++) {
 
 				// blur of size 2
-				int[] countin = new int[Biome.TOTAL_BIOMES];
+				int[] countin = new int[totalBiomes];
 				for (int q = a - rangein; q < a + rangein; q++) {
 					for (int w = b - rangein; w < b + rangein; w++) {
 						rand.setSeed(SEED + 4713 * q + 7608 * w);
-						countin[rand.nextInt(Biome.TOTAL_BIOMES)]++;
+						countin[rand.nextInt(totalBiomes)]++;
 						// base random function
 					}
 				}
 				int k = 0;
-				for (int q = 0; q < Biome.TOTAL_BIOMES; q++) {
+				for (int q = 0; q < totalBiomes; q++) {
 					if (countin[q] > countin[k]) {
 						k = q;
 					}
@@ -45,7 +46,7 @@ public class BasicTerrainGenerator extends TerrainGenerator {
 			}
 		}
 		int k = 0;
-		for (int a = 0; a < Biome.TOTAL_BIOMES; a++) {
+		for (int a = 0; a < totalBiomes; a++) {
 			if (count[a] > count[k]) {
 				k = a;
 			}
