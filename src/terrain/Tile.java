@@ -27,6 +27,8 @@ public class Tile extends Renderable implements Serializable {
 	private int boardX, boardY; // grid location
 
 	private double H;
+	
+	private Biome biome;
 
 	// copy of the rotation in RPGFrame
 	// TODO find a better way of getting this value
@@ -45,6 +47,10 @@ public class Tile extends Renderable implements Serializable {
 	}
 
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
+		
+		if(biome == null){
+			biome = w.getTerrainGenerator().getBiome(boardX, boardY);
+		}
 		double[] h = w.getTileHandler().getAdjacentTileHeights(boardX, boardY);
 		// top left bottom right
 
@@ -56,27 +62,27 @@ public class Tile extends Renderable implements Serializable {
 		// don't draw walls if tile is at ground level
 		if (H != 0) {
 
-			g.setColor(w.getTerrainGenerator().getBiome(boardX, boardY).getGroundColor());
+			g.setColor(biome.getGroundColor());
 
 			if (Math.PI / 2 < rotation && rotation < 3 * Math.PI / 2) {
 				rect(g, C[0][0], C[1][0] - H + k, C[0][3], C[1][3] - H + k, C[0][3], C[1][3] - h[0] + k, C[0][0],
 						C[1][0] - h[0] + k);
 			}
 
-			g.setColor(w.getTerrainGenerator().getBiome(boardX, boardY).getGroundColor());
+			g.setColor(biome.getGroundColor());
 
 			if (Math.PI < rotation && rotation < 2 * Math.PI) {
 				rect(g, C[0][0], C[1][0] - H + k, C[0][1], C[1][1] - H + k, C[0][1], C[1][1] - h[1] + k, C[0][0],
 						C[1][0] - h[1] + k);
 			}
-			g.setColor(w.getTerrainGenerator().getBiome(boardX, boardY).getGroundColor());
+			g.setColor(biome.getGroundColor());
 
 			if (!(Math.PI / 2 < rotation && rotation < 3 * Math.PI / 2)) {
 				rect(g, C[0][1], C[1][1] - H + k, C[0][2], C[1][2] - H + k, C[0][2], C[1][2] - h[2] + k, C[0][1],
 						C[1][1] - h[2] + k);
 			}
 
-			g.setColor(w.getTerrainGenerator().getBiome(boardX, boardY).getGroundColor());
+			g.setColor(biome.getGroundColor());
 
 			if (0 < rotation && rotation < Math.PI) {
 				rect(g, C[0][3], C[1][3] - H + k, C[0][2], C[1][2] - H + k, C[0][2], C[1][2] - h[3] + k, C[0][3],
@@ -85,7 +91,7 @@ public class Tile extends Renderable implements Serializable {
 		}
 
 		// set surface color
-		g.setColor(w.getTerrainGenerator().getBiome(boardX, boardY).getSurfaceColor());
+		g.setColor(biome.getSurfaceColor());
 
 		// draw tile surface
 		rect(g, C[0][0], C[1][0] - H + k, C[0][1], C[1][1] - H + k, C[0][2], C[1][2] - H + k, C[0][3], C[1][3] - H + k);
