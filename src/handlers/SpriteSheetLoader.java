@@ -7,13 +7,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * SPRITESHEETLOADER
+ * 
+ * Loads in a specific image file and returns crops of it for each individual
+ * entity.
+ */
+
 public abstract class SpriteSheetLoader {
-	
-	/**
-	 * SPRITESHEETLOADER
-	 * 
-	 * Loads in a specific image file and returns crops of it for each individual entity.
-	 */
 
 	protected BufferedImage Entities;
 

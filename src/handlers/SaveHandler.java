@@ -17,16 +17,17 @@ import saving.SavePacket;
 import terrain.Biome;
 import terrain.Tile;
 
+/**
+ * SAVEHANDLER
+ * 
+ * This saves and loads tiles and entities based on the player position.
+ * LOAD_SIZE in RPGFrame is the range of tiles that are loaded. Tiles and their
+ * contained entities are stored in SavePackets and are serialized into the save
+ * folder.
+ */
+
 public class SaveHandler {
-	/**
-	 * SAVEHANDLER
-	 * 
-	 * This saves and loads tiles and entities based on the player position.
-	 * LOAD_SIZE in RPGFrame is the range of tiles that are loaded.
-	 * Tiles and their contained entities are stored in SavePackets and are serialized
-	 * into the save folder.
-	 */
-	
+
 	private int oldX;
 	private int oldY;
 

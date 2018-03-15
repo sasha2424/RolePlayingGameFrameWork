@@ -2,11 +2,21 @@ package main;
 
 import java.io.Serializable;
 
+/**
+ * This is a Variable like HP which can be incremented up or down between a
+ * minimum and maximum value. This variable can also be "boosted" where its
+ * value will be increased by a constant. The "boost" is added regardless of the
+ * value of the DoubleStat.
+ * 
+ */
 public class DoubleStat implements Serializable {
-	private double val;
-	private double max;
-	private double min;
-	private double boost;
+
+	private static final long serialVersionUID = 1L;
+
+	private double val; // current value
+	private double max; // maximum value
+	private double min; // minimum value
+	private double boost; // increase on val
 
 	public DoubleStat(double val, double max) {
 		this.val = val;

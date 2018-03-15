@@ -10,11 +10,11 @@ import main.RPGFrame;
 import main.Variables;
 import terrain.Tile;
 
+/**
+ * This is a class for all things to be rendered in the game window.
+ */
 public abstract class Renderable implements Comparable<Renderable>, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private int RP = 0;// render priority (higher is rendered on top)

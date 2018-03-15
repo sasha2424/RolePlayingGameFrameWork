@@ -34,6 +34,7 @@ public abstract class Entity extends Renderable implements Serializable {
 	protected DoubleStat HP;
 	protected DoubleStat A;
 	protected DoubleStat D;
+	protected DoubleStat P;
 	protected boolean hasDied;
 	// TODO add and Clothes Set to this ( class which keeps track of clothes
 	// Equipped and each ones"thickness)
