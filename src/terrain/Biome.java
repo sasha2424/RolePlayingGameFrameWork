@@ -15,8 +15,6 @@ import main.Variables;
 
 public abstract class Biome implements Serializable {
 
-	public static final int TOTAL_BIOMES = 5;
-
 	private Color surface;
 	protected Image texture;
 	private Color ground;
@@ -42,6 +40,8 @@ public abstract class Biome implements Serializable {
 	}
 
 }
+
+
 
 
 
