@@ -20,7 +20,7 @@ public class BasicTerrainGenerator extends TerrainGenerator {
 
 		int rangeout = 4;
 		int rangein = 2;
-		int totalBiomes = 0;
+		int totalBiomes = 4;
 
 		// blur of size 4
 		int[] count = new int[totalBiomes];
