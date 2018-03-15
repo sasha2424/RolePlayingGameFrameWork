@@ -29,7 +29,8 @@ public abstract class Entity extends Renderable implements Serializable {
 
 	protected double collisionRange;
 
-	// battle stats
+	// These are Variables that can have modifiers
+	// Look at DoubleStat class
 	protected DoubleStat HP;
 	protected DoubleStat A;
 	protected DoubleStat D;
@@ -162,6 +163,22 @@ public abstract class Entity extends Renderable implements Serializable {
 
 	public boolean isDead() {
 		return hasDied;
+	}
+
+	public void hit(double A) {
+		HP.decrement(A);
+		if (HP.getVal() < 0) {
+			hasDied = true;
+		}
+	}
+
+	public double getAttack() {
+		return A.getVal();
+
+	}
+
+	public double getDefense() {
+		return D.getVal();
 	}
 
 }
