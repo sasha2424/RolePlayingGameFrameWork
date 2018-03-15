@@ -75,12 +75,12 @@ public class RPGFrame extends JPanel implements Runnable {
 	// 1 would mean current tile is loaded
 	// 2 would make all surrounding tiles loaded
 	// ...
-	public int LOAD_SIZE = 3;// 2
+	public int LOAD_SIZE = 4;// 2
 
 	// the distance that the player needs to move before tiles are reloaded
 	// if tiles were just loaded and the player travels over X tiles, tiles are
 	// reloaded
-	public int BUFFER = 1;
+	public int BUFFER = 2;
 
 	// range of tiles to render
 	// tiles may be loaded but this limit which ones will be rendered

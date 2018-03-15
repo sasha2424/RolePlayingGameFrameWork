@@ -17,7 +17,7 @@ public class Variables {
 
 	public static double rotation;
 
-	public static double TILE_SIZE = 200; // 1600
+	public static double TILE_SIZE = 1600; // 1600
 
 	public static void addVar(String s, Double d) {
 		vars.put(s, d);
