@@ -380,6 +380,7 @@ public class RPGFrame extends JPanel implements Runnable {
 				if (inputHandler.getKeyPressed("Escape")) {
 					saveHandler.saveAll(this, player);
 					savePlayer(player);
+					System.out.println("Game Saved");
 					System.exit(ABORT);
 				}
 

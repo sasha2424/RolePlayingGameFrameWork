@@ -50,17 +50,17 @@ public class Inventory implements Serializable {
 		g.fillRect(0, 0, (int) w.getCurrentWidth(), (int) w.getCurrentHeight());
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
-				if (inventory[i][j] != null) {
-					inventory[i][j].draw(g, i * SPACING, j * SPACING + DOWN_SHIFT);
+				if (inventory[j][i] != null) {
+					inventory[j][i].draw(g, i * SPACING, j * SPACING + DOWN_SHIFT);
 				}
 			}
 		}
 	}
 
 	public void renderHandBar(RPGFrame w, Graphics2D g) {
-		for (int i = 0; i < WIDTH; i++) {
-			if (inventory[i][0] != null) {
-				inventory[i][0].draw(g, i % 10 * SPACING * 2, w.getCurrentHeight() - 2 * SPACING);
+		for (int i = 0; i < HEIGHT; i++) {
+			if (inventory[0][i] != null) {
+				inventory[0][i].draw(g, i % 10 * SPACING * 2, w.getCurrentHeight() - 2 * SPACING);
 			}
 		}
 	}
