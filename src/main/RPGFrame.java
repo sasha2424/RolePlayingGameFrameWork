@@ -68,6 +68,9 @@ public class RPGFrame extends JPanel implements Runnable {
 	// file path for the image containing all of the in-game graphics
 	private String DEFAULT_SPRITE_SHEET = "./spritesheets/Entities.png";
 
+	// file path for the folder with all of the save data
+	private String DEFAULT_SAVE_DIR = "./Save/";
+
 	// the size of each entities texture
 	private int DEFAULT_SPRITE_SHEET_SIZE = 10;
 
@@ -109,13 +112,16 @@ public class RPGFrame extends JPanel implements Runnable {
 	// player used in the game
 	private Player player;
 
+	private String name; // this is the display name at the top of the window
+
 	// current game state
 	// 0 is the game
 	// 1 is the inventory
 	// ... more can be added for additional menus and states
 	private int Tab = 0;
 
-	public RPGFrame() {
+	public RPGFrame(String name) {
+		this.name = name;
 		// create default spriteSheetLoader
 		spriteSheetLoader = new BasicSpriteSheetLoader();
 		// load in the spritesheet
@@ -200,6 +206,17 @@ public class RPGFrame extends JPanel implements Runnable {
 	 */
 	public void setSpriteSheet(String fileName) {
 		DEFAULT_SPRITE_SHEET = "./spritesheets/" + fileName;
+	}
+
+	/**
+	 * Set the folder to be used when saving and loading the game.
+	 * 
+	 * @param folderName
+	 *            name of the folder
+	 * 
+	 */
+	public void setSaveDirectory(String folderName) {
+		DEFAULT_SAVE_DIR = folderName;
 	}
 
 	/**
@@ -338,7 +355,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	}
 
 	/**
-	 * Starts the windown and game
+	 * Starts the window and game
 	 */
 	public void start() {
 		this.run();
@@ -347,7 +364,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	// This is the loop which is run until the game is closed
 	@Override
 	public void run() {
-		JFrame frame = new JFrame("Grim");
+		JFrame frame = new JFrame(name);
 		frame.getContentPane().add(this, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize((int) WIDTH, (int) HEIGHT);
@@ -472,7 +489,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	 */
 	private long getSeed() {
 
-		String saveDataFile = "./Save/save.txt";
+		String saveDataFile = DEFAULT_SAVE_DIR + "save.txt";
 
 		File f = new File(saveDataFile);
 		if (f.exists() && !f.isDirectory()) {
@@ -521,7 +538,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	 */
 	private Player loadPlayer() {
 		try {
-			FileInputStream fis = new FileInputStream("./Save/player.ser");
+			FileInputStream fis = new FileInputStream(DEFAULT_SAVE_DIR + "player.ser");
 			ObjectInputStream in = new ObjectInputStream(fis);
 			Player p = (Player) in.readObject();
 			in.close();
@@ -548,7 +565,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	 */
 	private void savePlayer(Player p) {
 		try {
-			String save = "./Save/player.ser";
+			String save = DEFAULT_SAVE_DIR + "player.ser";
 
 			FileOutputStream fos = new FileOutputStream(save);
 			ObjectOutputStream out = new ObjectOutputStream(fos);
@@ -591,6 +608,14 @@ public class RPGFrame extends JPanel implements Runnable {
 
 	public RenderQueue getRenderQueue() {
 		return renderQueue;
+	}
+
+	public String getDefaultSpriteSheet() {
+		return this.DEFAULT_SPRITE_SHEET;
+	}
+
+	public String getDefaultSaveDirectory() {
+		return this.DEFAULT_SAVE_DIR;
 	}
 
 }

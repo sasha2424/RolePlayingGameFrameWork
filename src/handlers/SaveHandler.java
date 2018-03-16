@@ -48,7 +48,7 @@ public class SaveHandler {
 		if (Math.abs(X - oldX) > frame.BUFFER || Math.abs(Y - oldY) > frame.BUFFER) {
 			for (Tile t : frame.getTileHandler().getTilesToSave(frame.LOAD_SIZE, X, Y)) {
 				SavePacket p = new SavePacket(t, frame.getEntityHandler().getEntitiesInTile(t));
-				save(p);
+				save(p,frame);
 			}
 
 			for (int i = X - frame.LOAD_SIZE; i < X + frame.LOAD_SIZE; i++) {
@@ -73,14 +73,14 @@ public class SaveHandler {
 		for (Tile t : toSave) {
 			// TODO run saving as a separate thread to make the game faster
 			SavePacket p = new SavePacket(t, frame.getEntityHandler().getEntitiesInTile(t));
-			save(p);
+			save(p,frame);
 		}
 
 	}
 
 	public SavePacket load(RPGFrame frame, int x, int y) {
 		try {
-			FileInputStream fis = new FileInputStream("./Save/(" + x + "," + y + ").ser");
+			FileInputStream fis = new FileInputStream(frame.getDefaultSaveDirectory() + "(" + x + "," + y + ").ser");
 			ObjectInputStream in = new ObjectInputStream(fis);
 			SavePacket p = (SavePacket) in.readObject();
 			in.close();
@@ -97,9 +97,9 @@ public class SaveHandler {
 		return new SavePacket(t, e);
 	}
 
-	public void save(SavePacket p) {
+	public void save(SavePacket p, RPGFrame frame) {
 		try {
-			String save = "./Save/" + p.getName() + ".ser";
+			String save = frame.getDefaultSaveDirectory() + p.getName() + ".ser";
 
 			FileOutputStream fos = new FileOutputStream(save);
 			ObjectOutputStream out = new ObjectOutputStream(fos);
