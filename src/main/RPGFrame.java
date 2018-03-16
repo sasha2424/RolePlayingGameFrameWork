@@ -53,6 +53,8 @@ public class RPGFrame extends JPanel implements Runnable {
 	 * size of tiles: TILE_SIZE rotation of board: rotation
 	 */
 
+	// game window
+	private JFrame frame;
 	// default window size
 	private double WIDTH = 600;
 	private double HEIGHT = 600;
@@ -358,13 +360,18 @@ public class RPGFrame extends JPanel implements Runnable {
 	 * Starts the window and game
 	 */
 	public void start() {
-		this.run();
+		frameInit();
+
+		Thread thread = new Thread(this, name);
+		thread.start();
+
 	}
 
-	// This is the loop which is run until the game is closed
-	@Override
-	public void run() {
-		JFrame frame = new JFrame(name);
+	/**
+	 * Initializes the frame and makes it visible
+	 */
+	private void frameInit() {
+		frame = new JFrame(name);
 		frame.getContentPane().add(this, BorderLayout.CENTER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize((int) WIDTH, (int) HEIGHT);
@@ -372,13 +379,17 @@ public class RPGFrame extends JPanel implements Runnable {
 
 		frame.addKeyListener(inputHandler);
 		frame.addMouseWheelListener(inputHandler);
+	}
 
+	// This is the loop which is run until the game is closed
+	@Override
+	public void run() {
 		long t = System.currentTimeMillis();
 		long dt = 0;
-		while (true) {
+		while (!inputHandler.getKeyPressed("Escape")) {
 			dt = System.currentTimeMillis() - t;
-			frame.repaint();
 			if (dt > 20) {
+				frame.repaint();
 				t = System.currentTimeMillis();
 
 				entityHandler.tick(this, player);
@@ -394,16 +405,15 @@ public class RPGFrame extends JPanel implements Runnable {
 					player.resetAttackCounter();
 				}
 
-				if (inputHandler.getKeyPressed("Escape")) {
-					saveHandler.saveAll(this, player);
-					savePlayer(player);
-					System.out.println("Game Saved");
-					System.exit(ABORT);
-				}
-
 			}
 
 		}
+
+		saveHandler.saveAll(this, player);
+		savePlayer(player);
+		System.out.println("Game Saved");
+		frame.setVisible(false);
+		frame.dispose();
 
 	}
 
