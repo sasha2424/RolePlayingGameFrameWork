@@ -8,9 +8,9 @@ public class Variables {
 	/**
 	 * VARIABLES
 	 * 
-	 * Some constants that need to be held in a static class.
-	 * These can still be set and changed like any variables that are in RPGFrame.
-	 * This acts as an extension of RPGFrame.
+	 * Some constants that need to be held in a static class. These can still be
+	 * set and changed like any variables that are in RPGFrame. This acts as an
+	 * extension of RPGFrame.
 	 */
 
 	public static HashMap<String, Double> vars = new HashMap<String, Double>();

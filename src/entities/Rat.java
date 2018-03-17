@@ -35,35 +35,35 @@ public class Rat extends MovingEntity {
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
 		// TODO draw graphics in super class method (because all the same)
 
-		//gets the X and Y coordinates on the screen where the entity should be rendered
+		// gets the X and Y coordinates on the screen where the entity should be
+		// rendered
 		double x = (double) (getStandardRenderX(absX - player.getX(), absY - player.getY(), rotation,
 				w.getCurrentWidth() / 2));
 		double y = (double) (getStandardRenderY(absX - player.getX(), absY - player.getY(), rotation,
 				w.getCurrentHeight() / 2));
 
-		//gets the angle to the player
+		// gets the angle to the player
 		double angle = EntityHandler.getAngle(this, player);
 
-		//gets the difference in height between the player and entity
-		//this is used to make sure the entity appears on the right tile
+		// gets the difference in height between the player and entity
+		// this is used to make sure the entity appears on the right tile
 		double deltaH = this.getHeightDifference(w, height);
-		
-		//translate and rotate based on location and board rotation
+
+		// translate and rotate based on location and board rotation
 		g.translate(x, y + deltaH);
 		g.rotate(angle + rotation - Math.PI / 2);
 
-		//draw the rat body
+		// draw the rat body
 		g.drawImage(texture[0], -size / 2, -size / 2, size, size, null);
 
-		//rotate the tail based on time (angleCounter) and draw
+		// rotate the tail based on time (angleCounter) and draw
 		g.rotate(angleCounter);
 		g.drawImage(texture[1], -size / 2, +size / 2, size, size, null);
 		g.rotate(-angleCounter);
 
-		//undo rotations
+		// undo rotations
 		g.rotate(-angle - rotation + Math.PI / 2);
 		g.translate(-x, -y - deltaH);
-
 
 		// adjust rotation of tail
 		angleCounter += angleV;
@@ -74,6 +74,7 @@ public class Rat extends MovingEntity {
 
 	@Override
 	public void tick(RPGFrame frame) {
+
 		if (HP.getVal() > 0) {
 
 			Entity nearest = frame.getEntityHandler().getNearestEntity(this, "player");

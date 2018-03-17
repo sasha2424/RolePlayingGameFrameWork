@@ -21,14 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import entityHandling.*;
-import handlers.EntityHandler;
-import handlers.InputHandler;
-import handlers.RenderQueue;
-import handlers.SaveHandler;
-import handlers.Spawner;
-import handlers.SpriteSheetLoader;
-import handlers.TerrainGenerator;
-import handlers.TileHandler;
+import handlers.*;
 import rendering.*;
 import spriteSheets.BasicSpriteSheetLoader;
 import terrain.*;
@@ -628,5 +621,7 @@ public class RPGFrame extends JPanel implements Runnable {
 		return this.DEFAULT_SAVE_DIR;
 	}
 
-
+	public void setTileSize(int tileSize) {
+		Variables.TILE_SIZE = tileSize;
+	}
 }

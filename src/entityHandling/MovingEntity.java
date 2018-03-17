@@ -44,6 +44,13 @@ public abstract class MovingEntity extends Entity {
 				.addEntity(new Particle(frame, this.getAbsX() + randX, this.getAbsY() + randY, type, duration));
 	}
 
+	/**
+	 * Override this method to have custom death animations
+	 * @param frame game frame to draw particles in
+	 * @param type type of particle to summon
+	 * @param length duration of animation
+	 * @param parts number of segments in the animation
+	 */
 	protected void deathAnimation(RPGFrame frame, int type, int length, int parts) {
 		int d = (int) (length / parts);
 		if (timer % d == 0) {

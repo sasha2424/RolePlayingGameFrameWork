@@ -50,9 +50,6 @@ public class Walker extends MovingEntity {
 		}
 	}
 
-	public void runGraphic(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
-
-	}
 
 	@Override
 	public void deathEvent(RPGFrame frame, Player p) {

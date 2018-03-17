@@ -34,7 +34,7 @@ public class Player extends MovingEntity implements Serializable {
 		size = 30;
 		collisionRange = 30;
 		rotation = 0;
-		this.A = new DoubleStat(100, 100);
+		this.A = new DoubleStat(1, 1);
 	}
 
 	public String toString() {
