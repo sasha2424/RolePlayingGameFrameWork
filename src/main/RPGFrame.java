@@ -628,4 +628,5 @@ public class RPGFrame extends JPanel implements Runnable {
 		return this.DEFAULT_SAVE_DIR;
 	}
 
+
 }
