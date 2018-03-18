@@ -80,4 +80,8 @@ public class DoubleStat implements Serializable {
 		min = m;
 	}
 
+	public double getMax() {
+		return max;
+	}
+
 }

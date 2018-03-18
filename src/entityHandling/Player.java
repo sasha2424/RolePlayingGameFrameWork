@@ -1,6 +1,8 @@
 package entityHandling;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.io.Serializable;
 
 import handlers.EntityHandler;
@@ -21,8 +23,13 @@ public class Player extends MovingEntity implements Serializable {
 	public final double speed = 10;
 	public final double interactDistance = 80;
 	public final double interectAngle = Math.PI / 8;
+
 	public final int attackDelay = 50;
 	private int attackTickCount = 0;
+
+	public final int healDelay = 400;
+	private int healTickCount = 0;
+
 	public Inventory inventory;
 
 	private double rotation;
@@ -100,6 +107,11 @@ public class Player extends MovingEntity implements Serializable {
 		if (this.HP.getVal() <= 0) {
 			this.hasDied = true;
 		}
+		healTickCount++;
+		if (healTickCount > healDelay) {
+			HP.increment(1);
+			healTickCount = 0;
+		}
 		// TODO stuff like burns and poison and effects
 
 	}
@@ -129,5 +141,16 @@ public class Player extends MovingEntity implements Serializable {
 	@Override
 	public void takeHit(RPGFrame frame, double A) {
 		super.takeHit(frame, A);
+	}
+
+	public void renderHP(RPGFrame frame, Graphics2D g2d) {
+		Image heart = frame.getSpriteSheetLoader().getTexture(3, 1);
+		int hearSize = 30;
+		int shift = (int) (frame.getWidth() / (2 * HP.getMax()));
+		for (int i = 0; i < HP.getVal(); i++) {
+			g2d.drawImage(heart, frame.getWidth() / 2 + i * shift, frame.getHeight() - hearSize, hearSize, hearSize,
+					null);
+
+		}
 	}
 }

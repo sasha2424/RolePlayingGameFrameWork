@@ -442,6 +442,7 @@ public class RPGFrame extends JPanel implements Runnable {
 				g2d.drawString(player.getBoardX() + "  " + player.getBoardY(), 10, 10);
 
 				player.inventory.renderHandBar(this, g2d);
+				player.renderHP(this,g2d);
 			}
 		}
 	}
