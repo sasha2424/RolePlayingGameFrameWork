@@ -100,6 +100,13 @@ public abstract class Entity extends Renderable implements Serializable {
 
 	public abstract void deathEvent(RPGFrame frame, Player p);
 
+	/**
+	 * What happens to an entity when it is hit
+	 * @param frame the RPGFrame
+	 * @param A the amount by which they were attacked
+	 */
+	public abstract void takeHit(RPGFrame frame, double A);
+
 	public double getAbsX() {
 		return absX;
 	}
@@ -163,13 +170,6 @@ public abstract class Entity extends Renderable implements Serializable {
 
 	public boolean isDead() {
 		return hasDied;
-	}
-
-	public void hit(double A) {
-		HP.decrement(A);
-		if (HP.getVal() < 0) {
-			hasDied = true;
-		}
 	}
 
 	public double getAttack() {

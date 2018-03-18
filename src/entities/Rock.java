@@ -41,4 +41,10 @@ public class Rock extends StationaryEntity {
 
 	}
 
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -14,7 +14,7 @@ public class Particle extends StationaryEntity {
 
 	public Particle(RPGFrame frame, double X, double Y, int type, int duration) {
 		super(X, Y);
-		//TODO make seperate particle classes
+		// TODO make seperate particle classes
 		if (type == 0) {
 			this.textureX = new int[] { 0, 1, 2 };
 			this.textureY = new int[] { 2, 2, 2 };
@@ -58,6 +58,12 @@ public class Particle extends StationaryEntity {
 
 	@Override
 	public void deathEvent(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
 		// TODO Auto-generated method stub
 
 	}

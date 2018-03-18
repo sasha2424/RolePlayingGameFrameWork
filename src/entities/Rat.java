@@ -74,7 +74,7 @@ public class Rat extends MovingEntity {
 
 	@Override
 	public void tick(RPGFrame frame) {
-
+		super.tick(frame);
 		if (HP.getVal() > 0) {
 
 			Entity nearest = frame.getEntityHandler().getNearestEntity(this, "player");
@@ -82,7 +82,9 @@ public class Rat extends MovingEntity {
 				double dx = nearest.getAbsX() - this.getAbsX();
 				double dy = nearest.getAbsY() - this.getAbsY();
 				double d = Math.sqrt(dx * dx + dy * dy);
-
+				if (this.canAttack(d)) {
+					nearest.takeHit(frame, A.getVal());
+				}
 				velX = this.speed.getVal() * dx / d;
 				velY = this.speed.getVal() * dy / d;
 				super.move(d);
@@ -102,6 +104,11 @@ public class Rat extends MovingEntity {
 	public void nearPlayer(RPGFrame frame, Player p) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
+		super.takeHit(frame, A);
 	}
 
 }

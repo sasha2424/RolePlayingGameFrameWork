@@ -21,7 +21,7 @@ public class Player extends MovingEntity implements Serializable {
 	public final double speed = 10;
 	public final double interactDistance = 80;
 	public final double interectAngle = Math.PI / 8;
-	public final int attackDelay = 10;
+	public final int attackDelay = 50;
 	private int attackTickCount = 0;
 	public Inventory inventory;
 
@@ -97,6 +97,9 @@ public class Player extends MovingEntity implements Serializable {
 	@Override
 	public void tick(RPGFrame frame) {
 		attackTickCount++;
+		if (this.HP.getVal() <= 0) {
+			this.hasDied = true;
+		}
 		// TODO stuff like burns and poison and effects
 
 	}
@@ -120,6 +123,11 @@ public class Player extends MovingEntity implements Serializable {
 
 	@Override
 	public void deathEvent(RPGFrame frame, Player p) {
-		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
+		super.takeHit(frame, A);
 	}
 }

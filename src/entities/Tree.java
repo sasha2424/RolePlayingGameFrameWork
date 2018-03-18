@@ -35,8 +35,14 @@ public class Tree extends StationaryEntity {
 		
 	}
 
-	@Override
+	@Override	
 	public void deathEvent(RPGFrame frame, Player p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
 		// TODO Auto-generated method stub
 		
 	}

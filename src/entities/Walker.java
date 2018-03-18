@@ -50,7 +50,6 @@ public class Walker extends MovingEntity {
 		}
 	}
 
-
 	@Override
 	public void deathEvent(RPGFrame frame, Player p) {
 		if (Math.random() < .5)
@@ -62,6 +61,11 @@ public class Walker extends MovingEntity {
 	public void nearPlayer(RPGFrame frame, Player p) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
+		super.takeHit(frame, A);
 	}
 
 }

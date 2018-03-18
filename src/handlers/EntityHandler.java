@@ -3,6 +3,7 @@ package handlers;
 import java.util.ArrayList;
 
 import entityHandling.Entity;
+import entityHandling.Particle;
 import entityHandling.Player;
 import main.RPGFrame;
 import terrain.Tile;
@@ -127,6 +128,12 @@ public abstract class EntityHandler {
 
 	public int getEntityCount() {
 		return entities.size();
+	}
+
+	public void summonParticle(RPGFrame frame, Entity e, int type, double range, int duration) {
+		double randX = Math.random() * range * 2 - range;
+		double randY = Math.random() * range * 2 - range;
+		this.addEntity(new Particle(frame, e.getAbsX() + randX, e.getAbsY() + randY, type, duration));
 	}
 
 }

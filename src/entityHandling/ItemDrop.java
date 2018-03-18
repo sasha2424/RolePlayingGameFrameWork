@@ -68,4 +68,10 @@ public class ItemDrop extends Entity {
 
 	}
 
+	@Override
+	public void takeHit(RPGFrame frame, double A) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

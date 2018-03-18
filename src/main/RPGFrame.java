@@ -379,7 +379,7 @@ public class RPGFrame extends JPanel implements Runnable {
 	public void run() {
 		long t = System.currentTimeMillis();
 		long dt = 0;
-		while (!inputHandler.getKeyPressed("Escape")) {
+		while (!inputHandler.getKeyPressed("Escape") && !player.isDead()) {
 			dt = System.currentTimeMillis() - t;
 			if (dt > 20) {
 				frame.repaint();
@@ -417,6 +417,12 @@ public class RPGFrame extends JPanel implements Runnable {
 
 		setPlayerRotation();
 		setBoardRotation();
+
+		if (player.isDead()) {
+			g2d.drawString("GAME OVER", getWidth() / 2, getHeight() / 2);
+
+			return;
+		}
 
 		if (inputHandler.getKeyPressed("E")) {
 			Tab = 1;
@@ -548,6 +554,12 @@ public class RPGFrame extends JPanel implements Runnable {
 			fis.close();
 			p.updateTexture(this);
 			p.inventory.reloadItemTextures(this);
+
+			if (p.isDead()) {
+				System.out.println("player was dead and was reset");
+				return new Player(this, 0, 0, new int[] { 1 }, new int[] { 0 });
+			}
+
 			return p;
 		} catch (FileNotFoundException ex) {
 		} catch (IOException e) {
