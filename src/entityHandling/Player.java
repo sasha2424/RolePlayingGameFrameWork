@@ -21,7 +21,7 @@ public class Player extends MovingEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public final double speed = 10;
-	public final double interactDistance = 80;
+	public final double interactDistance = 100;
 	public final double interectAngle = Math.PI / 8;
 
 	public final int attackDelay = 50;
@@ -75,10 +75,9 @@ public class Player extends MovingEntity implements Serializable {
 		int cx = (int) (w.getCurrentWidth() / 2);
 		int cy = (int) (w.getCurrentHeight() / 2);
 
-		g.drawLine(cx, cy, cx + (int) (interactDistance * Math.cos(this.rotation)),
-				cy + (int) (interactDistance * Math.sin(this.rotation)));
-
-		if (true) { // TODO DEBUG needs to be setup
+		if (false) { // rendering the hit range
+			g.drawLine(cx, cy, cx + (int) (interactDistance * Math.cos(this.rotation)),
+					cy + (int) (interactDistance * Math.sin(this.rotation)));
 			double r = interectAngle;
 			g.drawLine(cx, cy, cx + (int) (interactDistance * Math.cos(this.rotation + r)),
 					cy + (int) (interactDistance * Math.sin(this.rotation + r)));

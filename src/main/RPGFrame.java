@@ -393,6 +393,9 @@ public class RPGFrame extends JPanel implements Runnable {
 				if (inputHandler.getKeyPressed("W")) {
 					player.move(playerRotation - rotation);
 				}
+				if (inputHandler.getKeyPressed("S")) {
+					player.move(Math.PI + playerRotation - rotation);
+				}
 				if (inputHandler.getKeyPressed("Space") && player.canAttack()) {
 					entityHandler.playerInteract(this, player, playerRotation - rotation);
 					player.resetAttackCounter();
@@ -442,7 +445,7 @@ public class RPGFrame extends JPanel implements Runnable {
 				g2d.drawString(player.getBoardX() + "  " + player.getBoardY(), 10, 10);
 
 				player.inventory.renderHandBar(this, g2d);
-				player.renderHP(this,g2d);
+				player.renderHP(this, g2d);
 			}
 		}
 	}

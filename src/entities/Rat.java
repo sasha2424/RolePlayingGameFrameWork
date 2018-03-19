@@ -23,11 +23,12 @@ public class Rat extends MovingEntity {
 		super(frame, X, Y, new int[] { 5, 6 }, new int[] { 0, 0 });
 		speed = new DoubleStat(3, 3);
 		HP = new DoubleStat(5, 5);
+		A = new DoubleStat(1,1);
 		angleCounter = 0;
 		angleV = .02;
 		name = "rat";
 		size = 30;
-		collisionRange = 15;
+		collisionRange = 20;
 
 	}
 
