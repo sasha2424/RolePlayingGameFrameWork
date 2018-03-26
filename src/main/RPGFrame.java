@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 
 import entityHandling.*;
 import handlers.*;
+import player.Player;
 import rendering.*;
 import spriteSheets.BasicSpriteSheetLoader;
 import terrain.*;

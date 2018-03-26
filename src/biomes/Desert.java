@@ -8,8 +8,8 @@ import entities.Grass;
 import entities.Rat;
 import entities.Rock;
 import entityHandling.Entity;
-import entityHandling.Player;
 import main.RPGFrame;
+import player.Player;
 import terrain.Biome;
 import terrain.Tile;
 

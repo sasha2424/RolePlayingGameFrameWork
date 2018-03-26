@@ -1,7 +1,7 @@
 package handlers;
 
-import entityHandling.Player;
 import main.RPGFrame;
+import player.Player;
 
 /**
  * SPAWNER

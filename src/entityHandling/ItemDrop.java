@@ -6,6 +6,7 @@ import handlers.EntityHandler;
 import handlers.TerrainGenerator;
 import items.Item;
 import main.RPGFrame;
+import player.Player;
 import terrain.Tile;
 
 public class ItemDrop extends Entity {

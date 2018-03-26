@@ -5,12 +5,12 @@ import java.awt.Graphics2D;
 import entityHandling.Entity;
 import entityHandling.ItemDrop;
 import entityHandling.MovingEntity;
-import entityHandling.Player;
 import handlers.EntityHandler;
 import items.Bread;
 import items.Fur;
 import main.DoubleStat;
 import main.RPGFrame;
+import player.Player;
 
 public class Walker extends MovingEntity {
 

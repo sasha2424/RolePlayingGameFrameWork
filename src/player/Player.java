@@ -1,16 +1,16 @@
-package entityHandling;
+package player;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.Serializable;
 
+import entityHandling.MovingEntity;
 import handlers.EntityHandler;
 import handlers.TerrainGenerator;
 import main.DoubleStat;
 import main.RPGFrame;
 import main.Variables;
-import player.Inventory;
 import terrain.Tile;
 
 public class Player extends MovingEntity implements Serializable {

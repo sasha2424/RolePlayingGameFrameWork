@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 
 import handlers.TerrainGenerator;
 import main.RPGFrame;
+import player.Player;
 import terrain.Tile;
 
 public class Particle extends StationaryEntity {

@@ -3,9 +3,9 @@ package rendering;
 import java.awt.Graphics2D;
 import java.util.Collections;
 
-import entityHandling.Player;
 import handlers.RenderQueue;
 import main.RPGFrame;
+import player.Player;
 import terrain.Tile;
 
 public class BasicRenderQueue extends RenderQueue {

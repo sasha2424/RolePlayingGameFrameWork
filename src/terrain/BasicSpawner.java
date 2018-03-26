@@ -1,9 +1,9 @@
 package terrain;
 
-import entityHandling.Player;
 import handlers.EntityHandler;
 import handlers.Spawner;
 import main.RPGFrame;
+import player.Player;
 
 public class BasicSpawner extends Spawner {
 

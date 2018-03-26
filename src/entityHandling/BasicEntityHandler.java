@@ -3,6 +3,7 @@ package entityHandling;
 import handlers.EntityHandler;
 import handlers.RenderQueue;
 import main.RPGFrame;
+import player.Player;
 
 public class BasicEntityHandler extends EntityHandler {
 

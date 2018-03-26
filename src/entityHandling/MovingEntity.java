@@ -1,6 +1,7 @@
 package entityHandling;
 
 import main.RPGFrame;
+import player.Player;
 
 public abstract class MovingEntity extends Entity {
 

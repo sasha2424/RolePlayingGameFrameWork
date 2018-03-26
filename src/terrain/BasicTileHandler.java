@@ -2,11 +2,11 @@ package terrain;
 
 import java.util.ArrayList;
 
-import entityHandling.Player;
 import handlers.EntityHandler;
 import handlers.RenderQueue;
 import handlers.TileHandler;
 import main.RPGFrame;
+import player.Player;
 
 public class BasicTileHandler extends TileHandler {
 

@@ -5,9 +5,9 @@ import java.awt.Graphics2D;
 import java.io.Serializable;
 
 import entityHandling.Entity;
-import entityHandling.Player;
 import main.RPGFrame;
 import main.Variables;
+import player.Player;
 import terrain.Tile;
 
 /**

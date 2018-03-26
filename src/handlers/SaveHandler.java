@@ -10,9 +10,9 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import entityHandling.Entity;
-import entityHandling.Player;
 import main.RPGFrame;
 import main.Variables;
+import player.Player;
 import saving.SavePacket;
 import terrain.Biome;
 import terrain.Tile;

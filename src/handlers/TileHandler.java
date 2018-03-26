@@ -2,9 +2,9 @@ package handlers;
 
 import java.util.ArrayList;
 
-import entityHandling.Player;
 import main.RPGFrame;
 import main.Variables;
+import player.Player;
 import terrain.Tile;
 
 /**

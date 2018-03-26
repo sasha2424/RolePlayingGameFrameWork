@@ -8,6 +8,7 @@ import handlers.SpriteSheetLoader;
 import main.DoubleStat;
 import main.RPGFrame;
 import main.Variables;
+import player.Player;
 import rendering.Renderable;
 import terrain.Tile;
 

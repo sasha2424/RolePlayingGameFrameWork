@@ -8,10 +8,10 @@ import java.util.Random;
 
 import entities.Walker;
 import entityHandling.Entity;
-import entityHandling.Player;
 import handlers.SpriteSheetLoader;
 import main.RPGFrame;
 import main.Variables;
+import player.Player;
 
 public abstract class Biome implements Serializable {
 

@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import entityHandling.Entity;
-import entityHandling.Player;
 import main.RPGFrame;
+import player.Player;
 import rendering.Renderable;
 import terrain.Tile;
 

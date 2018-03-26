@@ -9,9 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import entityHandling.Entity;
-import entityHandling.Player;
 import main.RPGFrame;
 import main.Variables;
+import player.Player;
 import rendering.Renderable;
 
 public class Tile extends Renderable implements Serializable {

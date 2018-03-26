@@ -4,10 +4,10 @@ import java.awt.Graphics;
 
 import java.awt.Graphics2D;
 
-import entityHandling.Player;
 import entityHandling.StationaryEntity;
 import handlers.EntityHandler;
 import main.RPGFrame;
+import player.Player;
 import terrain.Tile;
 
 public class Tree extends StationaryEntity {

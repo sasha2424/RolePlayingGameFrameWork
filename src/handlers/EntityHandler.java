@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import entityHandling.Entity;
 import entityHandling.Particle;
-import entityHandling.Player;
 import main.RPGFrame;
+import player.Player;
 import terrain.Tile;
 
 /**
