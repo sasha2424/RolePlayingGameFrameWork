@@ -1,5 +1,6 @@
 package handlers;
 
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -21,6 +22,9 @@ public class InputHandler implements KeyListener, MouseWheelListener {
 	private int scroll;
 
 	private int SCROLL_SENSITIVITY;
+
+	private Point mouseClickOld;
+	private Point mouseClickNew;
 
 	public InputHandler() {
 		super();
@@ -84,6 +88,11 @@ public class InputHandler implements KeyListener, MouseWheelListener {
 		scroll += e.getWheelRotation() * SCROLL_SENSITIVITY;
 	}
 
+	public void mousePressed(MouseEvent e) {
+		mouseClickOld = mouseClickNew;
+		mouseClickNew = e.getPoint();
+	}
+
 	private class Key { // TODO give key codes and make streamlined
 		private String name;
 		private Boolean pressed;
@@ -122,6 +131,14 @@ public class InputHandler implements KeyListener, MouseWheelListener {
 		public void setNotPressed() {
 			pressed = false;
 		}
+	}
+
+	public Point getMouseClickOld() {
+		return mouseClickOld;
+	}
+
+	public Point getMouseClickNew() {
+		return mouseClickNew;
 	}
 
 }

@@ -381,8 +381,8 @@ public class RPGFrame extends JPanel implements Runnable {
 		long dt = 0;
 		while (!inputHandler.getKeyPressed("Escape") && !player.isDead()) {
 			dt = System.currentTimeMillis() - t;
+			frame.repaint();
 			if (dt > 20) {
-				frame.repaint();
 				t = System.currentTimeMillis();
 
 				entityHandler.tick(this, player);
