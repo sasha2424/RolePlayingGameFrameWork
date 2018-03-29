@@ -8,6 +8,15 @@ import java.io.Serializable;
 import handlers.SpriteSheetLoader;
 import main.RPGFrame;
 
+/***
+ * 
+ * Class representing all ingame items.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class Item implements Serializable {
 
 	protected transient Image texture;

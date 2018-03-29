@@ -11,6 +11,15 @@ import main.DoubleStat;
 import main.RPGFrame;
 import player.Player;
 
+/**
+ * 
+ * Example Moving Entity class.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class Rat extends MovingEntity {
 
 	private double angleCounter;

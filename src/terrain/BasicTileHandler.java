@@ -8,6 +8,15 @@ import handlers.TileHandler;
 import main.RPGFrame;
 import player.Player;
 
+/***
+ * 
+ * Example TileHandler class.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
+
 public class BasicTileHandler extends TileHandler {
 
 	public void renderAll(RPGFrame frame, RenderQueue renderQueue, Player p) {

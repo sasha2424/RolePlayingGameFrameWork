@@ -12,6 +12,9 @@ import javax.imageio.ImageIO;
  * 
  * Loads in a specific image file and returns crops of it for each individual
  * entity.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
  */
 
 public abstract class SpriteSheetLoader {

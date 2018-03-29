@@ -9,6 +9,16 @@ import main.RPGFrame;
 import player.Player;
 import terrain.Tile;
 
+
+/**
+ * 
+ * Entity representing dropped items.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class ItemDrop extends Entity {
 
 	private Item item;

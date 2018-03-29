@@ -5,6 +5,15 @@ import java.util.Random;
 import biomes.Desert;
 import handlers.TerrainGenerator;
 
+/***
+ * 
+ * Example TerrainGenerator class.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
+
 public class BasicTerrainGenerator extends TerrainGenerator {
 
 	public BasicTerrainGenerator(long seed) {

@@ -7,6 +7,15 @@ import main.RPGFrame;
 import player.Player;
 import terrain.Tile;
 
+/**
+ * 
+ * Class for particl animations.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class Particle extends StationaryEntity {
 	private int t = 0; // tick counter for duration
 	private int animation = 0;

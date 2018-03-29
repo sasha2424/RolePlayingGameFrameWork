@@ -13,11 +13,17 @@ import main.RPGFrame;
 import main.Variables;
 import terrain.Tile;
 
+/***
+ * 
+ * The player in the game.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
+
 public class Player extends MovingEntity implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	public final double speed = 10;

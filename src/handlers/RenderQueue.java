@@ -20,6 +20,8 @@ import terrain.Tile;
  * 
  * The RenderQueue needs to be externally cleared after rendering;
  * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
  */
 
 public abstract class RenderQueue {

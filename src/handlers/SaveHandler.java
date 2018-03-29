@@ -24,6 +24,9 @@ import terrain.Tile;
  * LOAD_SIZE in RPGFrame is the range of tiles that are loaded. Tiles and their
  * contained entities are stored in SavePackets and are serialized into the save
  * folder.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
  */
 
 public class SaveHandler {
@@ -48,7 +51,7 @@ public class SaveHandler {
 		if (Math.abs(X - oldX) > frame.BUFFER || Math.abs(Y - oldY) > frame.BUFFER) {
 			for (Tile t : frame.getTileHandler().getTilesToSave(frame.LOAD_SIZE, X, Y)) {
 				SavePacket p = new SavePacket(t, frame.getEntityHandler().getEntitiesInTile(t));
-				save(p,frame);
+				save(p, frame);
 			}
 
 			for (int i = X - frame.LOAD_SIZE; i < X + frame.LOAD_SIZE; i++) {
@@ -73,7 +76,7 @@ public class SaveHandler {
 		for (Tile t : toSave) {
 			// TODO run saving as a separate thread to make the game faster
 			SavePacket p = new SavePacket(t, frame.getEntityHandler().getEntitiesInTile(t));
-			save(p,frame);
+			save(p, frame);
 		}
 
 	}

@@ -5,6 +5,15 @@ import handlers.RenderQueue;
 import main.RPGFrame;
 import player.Player;
 
+/**
+ * 
+ * Example Entity Handler class.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class BasicEntityHandler extends EntityHandler {
 
 	public void renderAll(RPGFrame frame, RenderQueue renderQueue, Player p) {

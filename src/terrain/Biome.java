@@ -13,6 +13,15 @@ import main.RPGFrame;
 import main.Variables;
 import player.Player;
 
+/***
+ * 
+ * Class representing terrain generation biomes.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
+
 public abstract class Biome implements Serializable {
 
 	private Color surface;

@@ -8,15 +8,21 @@ import java.util.ArrayList;
 import items.Item;
 import main.RPGFrame;
 
+/***
+ * 
+ * Class holding all of the players items.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
 public class Inventory implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private final int SPACING = 60; // TODO move to main
 
-	private final int DOWN_SHIFT = 210; //TODO move to main
+	private final int DOWN_SHIFT = 210; // TODO move to main
 
 	private int WIDTH = 5;
 	private int HEIGHT = 5;
@@ -33,8 +39,7 @@ public class Inventory implements Serializable {
 		inventory = new ArrayList<ItemSlot>();
 		handbar = new ArrayList<ItemSlot>();
 		equipment = new ArrayList<ItemSlot>();
-		
-		
+
 		for (int i = 0; i < WIDTH; i++) {
 			for (int j = 0; j < HEIGHT; j++) {
 				inventory.add(new ItemSlot(i * SPACING, j * SPACING + DOWN_SHIFT, ICON_SIZE, ICON_SIZE));

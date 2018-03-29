@@ -11,7 +11,10 @@ import player.Player;
 import terrain.Tile;
 
 /**
- * This is a class for all things to be rendered in the game window.
+ * This class represents an objects that can be rendered in the game window.
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ * 
  */
 public abstract class Renderable implements Comparable<Renderable>, Serializable {
 

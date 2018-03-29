@@ -1,12 +1,21 @@
 package rendering;
 
 import java.awt.Graphics2D;
+
 import java.util.Collections;
 
 import handlers.RenderQueue;
 import main.RPGFrame;
 import player.Player;
 import terrain.Tile;
+/***
+ * 
+ * Example RenderQueue class.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
 
 public class BasicRenderQueue extends RenderQueue {
 

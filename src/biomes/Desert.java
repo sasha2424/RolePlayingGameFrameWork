@@ -13,6 +13,14 @@ import player.Player;
 import terrain.Biome;
 import terrain.Tile;
 
+/**
+ * 
+ * Example Biome class.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
 public class Desert extends Biome {
 
 	@Override

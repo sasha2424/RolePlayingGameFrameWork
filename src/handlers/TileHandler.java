@@ -10,13 +10,14 @@ import terrain.Tile;
 /**
  * TILEHANDLER
  * 
- * This manages all of the tiles in the game. Performs Rendering and
- * provides various methods for modifying the tiles set and receiving
- * certain tiles.
+ * This manages all of the tiles in the game. Performs Rendering and provides
+ * various methods for modifying the tiles set and receiving certain tiles.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
  * 
  */
 public abstract class TileHandler {
-
 
 	protected ArrayList<Tile> tiles;
 

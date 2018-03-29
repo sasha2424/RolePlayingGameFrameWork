@@ -6,6 +6,15 @@ import java.util.ArrayList;
 import entityHandling.Entity;
 import terrain.Tile;
 
+/***
+ * 
+ * Class used for saving and loading entities and tiles jointly.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
+
 public class SavePacket implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -12,11 +12,17 @@ import player.Player;
 import rendering.Renderable;
 import terrain.Tile;
 
+/**
+ * 
+ * Class representing all Entities.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public abstract class Entity extends Renderable implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	protected String name;
@@ -103,8 +109,11 @@ public abstract class Entity extends Renderable implements Serializable {
 
 	/**
 	 * What happens to an entity when it is hit
-	 * @param frame the RPGFrame
-	 * @param A the amount by which they were attacked
+	 * 
+	 * @param frame
+	 *            the RPGFrame
+	 * @param A
+	 *            the amount by which they were attacked
 	 */
 	public abstract void takeHit(RPGFrame frame, double A);
 

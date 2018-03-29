@@ -8,7 +8,11 @@ import java.io.Serializable;
  * value will be increased by a constant. The "boost" is added regardless of the
  * value of the DoubleStat.
  * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ * 
  */
+
 public class DoubleStat implements Serializable {
 
 	private static final long serialVersionUID = 1L;

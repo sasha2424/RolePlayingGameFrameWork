@@ -3,6 +3,13 @@ package entityHandling;
 import main.RPGFrame;
 import player.Player;
 
+/**
+ * Class representing stationary entities.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
 public abstract class StationaryEntity extends Entity {
 
 	public boolean spawnsMonster;

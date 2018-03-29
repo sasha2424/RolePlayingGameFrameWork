@@ -5,6 +5,15 @@ import handlers.Spawner;
 import main.RPGFrame;
 import player.Player;
 
+/*** 
+ * 
+ * Example Spawner class.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class BasicSpawner extends Spawner {
 
 	private int timer = 0; // timer for when mobs are spawned

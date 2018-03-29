@@ -29,10 +29,11 @@ import terrain.*;
 
 /***
  * @author Alexander Ivanov
+ * @version 2018.03.15
  * 
- *         FrameWork for sky-view, 3rd person, RPG games. Instance should be
- *         created in another class Then methods should be used to change
- *         default parameters.
+ *          FrameWork for sky-view, 3rd person, RPG games. Instance should be
+ *          created in another class Then methods should be used to change
+ *          default parameters.
  *
  */
 

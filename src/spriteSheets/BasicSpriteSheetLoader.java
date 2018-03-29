@@ -8,6 +8,15 @@ import javax.imageio.ImageIO;
 
 import handlers.SpriteSheetLoader;
 
+/***
+ * 
+ * Example SpriteSheetLoader class.
+ * 
+ * @author Alexander Ivanov
+* @version 2018.03.15
+ *
+ */
+
 public class BasicSpriteSheetLoader extends SpriteSheetLoader {
 
 	public void load(String file, int size) {

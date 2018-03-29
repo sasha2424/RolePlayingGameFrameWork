@@ -13,7 +13,10 @@ import java.util.ArrayList;
  * INPUTHANDLER
  * 
  * This keeps track of the mouse position, mouse scroll, and certain keys. keys
- * can be set with the trackNewKey() method
+ * can be set with the trackNewKey() method.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
  */
 public class InputHandler implements KeyListener, MouseWheelListener {
 

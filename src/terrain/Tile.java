@@ -2,7 +2,6 @@ package terrain;
 
 import java.awt.Color;
 
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.Serializable;
@@ -14,11 +13,16 @@ import main.Variables;
 import player.Player;
 import rendering.Renderable;
 
-public class Tile extends Renderable implements Serializable {
+/***
+ * 
+ * Used as the terrain building block in the game.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
 
-	/**
-	 * 
-	 */
+public class Tile extends Renderable implements Serializable {
 
 	private transient ArrayList<Renderable> contained;
 
@@ -27,7 +31,7 @@ public class Tile extends Renderable implements Serializable {
 	private int boardX, boardY; // grid location
 
 	private double H;
-	
+
 	private Biome biome;
 
 	// copy of the rotation in RPGFrame
@@ -47,8 +51,8 @@ public class Tile extends Renderable implements Serializable {
 	}
 
 	public void draw(RPGFrame w, Graphics2D g, Player player, double rotation, double height) {
-		
-		if(biome == null){
+
+		if (biome == null) {
 			biome = w.getTerrainGenerator().getBiome(boardX, boardY);
 		}
 		double[] h = w.getTileHandler().getAdjacentTileHeights(boardX, boardY);

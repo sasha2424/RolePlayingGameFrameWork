@@ -10,6 +10,15 @@ import main.RPGFrame;
 import player.Player;
 import terrain.Tile;
 
+/**
+ * 
+ * Example Stationary Entity class.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class Rock extends StationaryEntity {
 
 	public Rock(RPGFrame frame, double X, double Y) {

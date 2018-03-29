@@ -3,11 +3,17 @@ package entityHandling;
 import main.RPGFrame;
 import player.Player;
 
+/**
+ * 
+ * Class representing entities that can move.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public abstract class MovingEntity extends Entity {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	protected Boolean shouldMove = true;

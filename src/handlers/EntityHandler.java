@@ -14,7 +14,14 @@ import terrain.Tile;
  * This manages all of the entities in the game. -draw -tick Also give each
  * entity a way to search for nearby entities and interact with their
  * surroundings.
+ * 
+ * @author Alexander Ivanov
+ * 
+ * @version 2018.03.15
+ * 
  */
+
+
 public abstract class EntityHandler {
 
 	protected ArrayList<Entity> entities;

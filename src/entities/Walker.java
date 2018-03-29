@@ -12,6 +12,15 @@ import main.DoubleStat;
 import main.RPGFrame;
 import player.Player;
 
+/**
+ * 
+ * Example Moving Entity class with no complex rendering.
+ * 
+ * @author Alexander Ivanov
+ * @version 2018.03.15
+ *
+ */
+
 public class Walker extends MovingEntity {
 
 	private static final long serialVersionUID = 1L;
