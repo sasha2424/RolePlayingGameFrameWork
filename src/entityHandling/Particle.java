@@ -9,7 +9,7 @@ import terrain.Tile;
 
 /**
  * 
- * Class for particl animations.
+ * Class for particle animations.
  * 
  * @author Alexander Ivanov
  * @version 2018.03.15
